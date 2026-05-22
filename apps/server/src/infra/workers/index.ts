@@ -1,6 +1,6 @@
 import "dotenv/config";
-import { connectDatabase, disconnectDatabase } from "@kasistay/db";
-import { logger } from "@kasistay/logger";
+import { connectDatabase, disconnectDatabase } from "@estate-grid/db";
+import { logger } from "@estate-grid/logger";
 import { ensurePropertySearchIndex } from "../search";
 import { startQueueWorker } from "../queue/client";
 import { registerWorkerProcessors } from "./processors";

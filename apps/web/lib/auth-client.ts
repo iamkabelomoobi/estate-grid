@@ -1,1 +1,1 @@
-export { authClient } from "@kasistay/auth/client"
+export { authClient } from "@estate-grid/auth/client"

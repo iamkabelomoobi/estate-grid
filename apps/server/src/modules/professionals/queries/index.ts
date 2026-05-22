@@ -1,4 +1,4 @@
-import { ApplicationReviewStatus, Prisma } from "@kasistay/db";
+import { ApplicationReviewStatus, Prisma } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { parseEnum } from "../../../utils/parse-enum";
 

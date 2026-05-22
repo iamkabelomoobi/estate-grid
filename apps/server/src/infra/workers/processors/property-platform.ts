@@ -1,6 +1,6 @@
-import { prisma, PropertyStatus } from "@kasistay/db";
-import { sendEmail } from "@kasistay/email";
-import { logger } from "@kasistay/logger";
+import { prisma, PropertyStatus } from "@estate-grid/db";
+import { sendEmail } from "@estate-grid/email";
+import { logger } from "@estate-grid/logger";
 import { Context } from "../../../app/context";
 import { createRecurringJob } from "../../queue";
 import { registerQueueProcessor } from "../../queue/registry";

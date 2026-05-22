@@ -9,7 +9,7 @@ if (!outputArg) {
 }
 
 process.env.DATABASE_URL ??=
-  "postgresql://postgres:postgres@localhost:5432/kasistay";
+  "postgresql://postgres:postgres@localhost:5432/estate-grid";
 
 const outputPath = resolve(process.cwd(), outputArg);
 const { schema } = await import("../src/app");

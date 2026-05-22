@@ -4,7 +4,7 @@ import {
   ArticleStatus,
   CareerPostStatus,
   StaticPageStatus,
-} from "@kasistay/db";
+} from "@estate-grid/db";
 import { getArticle } from "../src/modules/advice/queries/index.ts";
 import { getCareerPost } from "../src/modules/careers/queries/index.ts";
 import { getStaticPageBySlug } from "../src/modules/pages/queries/index.ts";

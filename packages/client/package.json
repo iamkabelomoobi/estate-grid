@@ -1,7 +1,7 @@
 {
-  "name": "@kasistay/client",
+  "name": "@estate-grid/client",
   "version": "1.0.0",
-  "description": "Generated GraphQL documents and types for Kasistay clients",
+  "description": "Generated GraphQL documents, OpenAPI SDK, and types for estate-grid clients",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -11,11 +11,16 @@
     }
   },
   "scripts": {
-    "build:schema-deps": "npm run build --workspace @kasistay/logger && npm run build --workspace @kasistay/db && npm run build --workspace @kasistay/email && npm run build --workspace @kasistay/auth",
-    "bootstrap": "npm run build:schema-deps && npm run schema:export && graphql-codegen --config codegen.ts",
+    "build:schema-deps": "npm run build --workspace @estate-grid/logger && npm run build --workspace @estate-grid/db && npm run build --workspace @estate-grid/email && npm run build --workspace @estate-grid/auth",
+    "bootstrap": "npm run build:schema-deps && npm run schema:export && npm run openapi:export && npm run generate",
+    "generate": "npm run generate:graphql && npm run generate:openapi",
+    "generate:graphql": "npm run generate:graphql-operations && graphql-codegen --config codegen.ts",
+    "generate:graphql-operations": "node --import tsx ./scripts/generate-graphql-operations.ts",
+    "generate:openapi": "orval --config orval.config.ts",
     "build": "npm run bootstrap && tsc -p tsconfig.json && node ../../scripts/fix-esm-specifiers.mjs dist",
     "check-types": "npm run bootstrap && tsc -p tsconfig.json --noEmit",
-    "schema:export": "npm run schema:export --workspace @kasistay/server"
+    "schema:export": "npm run schema:export --workspace @estate-grid/server",
+    "openapi:export": "npm run openapi:export --workspace @estate-grid/server"
   },
   "license": "ISC",
   "type": "module",
@@ -23,6 +28,7 @@
     "@graphql-codegen/cli": "^6.0.0",
     "@graphql-codegen/client-preset": "^5.1.0",
     "@types/node": "^25.6.0",
+    "orval": "^8.11.0",
     "typescript": "^5.9.2"
   },
   "dependencies": {

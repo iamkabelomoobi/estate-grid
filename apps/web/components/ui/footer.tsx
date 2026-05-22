@@ -93,11 +93,11 @@ export const Footer = () => {
                   />
                 </svg>
               </span>
-              <h2 className="text-xl font-semibold tracking-tight">KasiStay</h2>
+              <h2 className="text-xl font-semibold tracking-tight">estate-grid</h2>
             </div>
 
             <address className="not-italic text-sm leading-6 text-black/70">
-              KasiStay Property Services
+              estate-grid Property Services
               <br />
               102 Jorissen Street, Braamfontein
               <br />
@@ -223,7 +223,7 @@ export const Footer = () => {
         <div className="mt-8 overflow-hidden rounded-sm border border-black/10">
           <Image
             src="/bg/hero.jpg"
-            alt="KasiStay homes"
+            alt="estate-grid homes"
             width={1920}
             height={600}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
@@ -232,7 +232,7 @@ export const Footer = () => {
         </div>
 
         <div className="mt-5 flex flex-col gap-4 text-xs text-black/75 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 KasiStay. All rights reserved.</p>
+          <p>© 2026 estate-grid. All rights reserved.</p>
 
           <div className="flex items-center gap-2">
             {socialLinks.map((link) => (

@@ -1,4 +1,4 @@
-import type { Prisma, Property, Review } from "@kasistay/db";
+import type { Prisma, Property, Review } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { notFound } from "../../../utils/errors";
 import { propertyInclude } from "../../properties/queries";

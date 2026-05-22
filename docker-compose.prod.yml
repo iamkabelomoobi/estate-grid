@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
       target: web
-    container_name: ${WEB_CONTAINER_PROD:-kasistay-web-prod}
+    container_name: ${WEB_CONTAINER_PROD:-estate-grid-web-prod}
     restart: unless-stopped
     depends_on:
       server:
@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: Dockerfile
       target: server
-    container_name: ${SERVER_CONTAINER_PROD:-kasistay-server-prod}
+    container_name: ${SERVER_CONTAINER_PROD:-estate-grid-server-prod}
     restart: unless-stopped
     env_file:
       - .env
@@ -48,31 +48,31 @@ services:
       - "${SERVER_PORT:-4000}:${PORT:-4000}"
 
   postgres:
-    image: ${POSTGRES_IMAGE}
-    container_name: ${POSTGRES_CONTAINER_PROD}
+    image: ${POSTGRES_IMAGE:-postgres:16-alpine}
+    container_name: ${POSTGRES_CONTAINER_PROD:-estate-grid-postgres-prod}
     restart: unless-stopped
     ports:
-      - "${POSTGRES_PORT}:5432"
+      - "${POSTGRES_PORT:-5432}:5432"
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB_PROD}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB_PROD:-estate-grid}
     volumes:
-      - ${POSTGRES_VOLUME_PROD}:/var/lib/postgresql/data
+      - postgres_data_prod:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB_PROD}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB_PROD:-estate-grid}"]
       interval: 10s
       timeout: 5s
       retries: 5
 
   redis:
-    image: ${REDIS_IMAGE}
-    container_name: ${REDIS_CONTAINER_PROD}
+    image: ${REDIS_IMAGE:-redis:7-alpine}
+    container_name: ${REDIS_CONTAINER_PROD:-estate-grid-redis-prod}
     restart: unless-stopped
     ports:
-      - "${REDIS_PORT}:6379"
+      - "${REDIS_PORT:-6379}:6379"
     volumes:
-      - ${REDIS_VOLUME_PROD}:/data
+      - redis_data_prod:/data
     command: ["redis-server", "--appendonly", "yes"]
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -81,17 +81,17 @@ services:
       retries: 5
 
   elasticsearch:
-    image: ${ELASTICSEARCH_IMAGE}
-    container_name: ${ELASTICSEARCH_CONTAINER_PROD}
+    image: ${ELASTICSEARCH_IMAGE:-docker.elastic.co/elasticsearch/elasticsearch:8.15.3}
+    container_name: ${ELASTICSEARCH_CONTAINER_PROD:-estate-grid-elasticsearch-prod}
     restart: unless-stopped
     ports:
-      - "${ELASTICSEARCH_PORT}:9200"
+      - "${ELASTICSEARCH_PORT:-9200}:9200"
     environment:
       discovery.type: single-node
       xpack.security.enabled: "false"
       ES_JAVA_OPTS: "-Xms512m -Xmx512m"
     volumes:
-      - ${ELASTICSEARCH_VOLUME_PROD}:/usr/share/elasticsearch/data
+      - elasticsearch_data_prod:/usr/share/elasticsearch/data
     healthcheck:
       test: ["CMD-SHELL", "curl -fs http://localhost:9200/_cluster/health || exit 1"]
       interval: 20s
@@ -99,11 +99,11 @@ services:
       retries: 10
 
   kibana:
-    image: ${KIBANA_IMAGE}
-    container_name: ${KIBANA_CONTAINER_PROD}
+    image: ${KIBANA_IMAGE:-docker.elastic.co/kibana/kibana:8.15.3}
+    container_name: ${KIBANA_CONTAINER_PROD:-estate-grid-kibana-prod}
     restart: unless-stopped
     ports:
-      - "${KIBANA_PORT}:5601"
+      - "${KIBANA_PORT:-5601}:5601"
     environment:
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
     depends_on:
@@ -117,12 +117,12 @@ services:
 
 volumes:
   postgres_data_prod:
-    name: ${POSTGRES_VOLUME_PROD}
+    name: ${POSTGRES_VOLUME_PROD:-estate-grid-postgres-data-prod}
   redis_data_prod:
-    name: ${REDIS_VOLUME_PROD}
+    name: ${REDIS_VOLUME_PROD:-estate-grid-redis-data-prod}
   elasticsearch_data_prod:
-    name: ${ELASTICSEARCH_VOLUME_PROD}
+    name: ${ELASTICSEARCH_VOLUME_PROD:-estate-grid-elasticsearch-data-prod}
 
 networks:
   default:
-    name: ${APP_NETWORK}
+    name: ${APP_NETWORK:-estate-grid-network}

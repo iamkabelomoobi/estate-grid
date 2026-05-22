@@ -1,4 +1,4 @@
-import { UserRole } from "@kasistay/db";
+import { UserRole } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { notFound, unauthorized } from "../../../utils/errors";
 import { agencyInclude } from "../queries";

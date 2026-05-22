@@ -1,4 +1,4 @@
-import { CareerPostStatus } from "@kasistay/db";
+import { CareerPostStatus } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { badInput, notFound } from "../../../utils/errors";
 import { generateUniqueSlug } from "../../../utils/generate-unique-slug";

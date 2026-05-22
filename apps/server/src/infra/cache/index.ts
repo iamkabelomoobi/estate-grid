@@ -1,4 +1,4 @@
-import { logger } from "@kasistay/logger";
+import { logger } from "@estate-grid/logger";
 import { createHash } from "node:crypto";
 import Redis from "ioredis";
 import { config } from "../config";

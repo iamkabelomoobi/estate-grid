@@ -78,7 +78,7 @@ export const ResetPasswordForm = () => {
   return (
     <form aria-busy={isSubmitting} onSubmit={handleSubmit}>
       <AuthFormCard
-        description="Choose a secure password for your kasistay account."
+        description="Choose a secure password for your estate-grid account."
         footer={
           <p className="text-center text-sm text-muted-foreground">
             Remembered it already?{" "}

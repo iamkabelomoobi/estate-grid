@@ -1,4 +1,4 @@
-import { Prisma } from "@kasistay/db";
+import { Prisma } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import {
   cache,

@@ -50,46 +50,46 @@ const date = (value: string) => new Date(value);
 
 const userDefinitions = {
   admin: {
-    email: "admin.seed@kasistay.local",
-    name: "Kasi Stay Admin",
+    email: "admin.seed@estate-grid.local",
+    name: "Estate Grid Admin",
     phone: "+27 82 000 0001",
     role: UserRole.ADMIN,
-    avatar: "https://images.kasistay.local/users/admin.jpg",
+    avatar: "https://images.estate-grid.local/users/admin.jpg",
   },
   agent: {
-    email: "agent.seed@kasistay.local",
+    email: "agent.seed@estate-grid.local",
     name: "Thabo Agent",
     phone: "+27 82 000 0002",
     role: UserRole.AGENT,
-    avatar: "https://images.kasistay.local/users/agent.jpg",
+    avatar: "https://images.estate-grid.local/users/agent.jpg",
   },
   owner: {
-    email: "owner.seed@kasistay.local",
+    email: "owner.seed@estate-grid.local",
     name: "Lerato Owner",
     phone: "+27 82 000 0003",
     role: UserRole.OWNER,
-    avatar: "https://images.kasistay.local/users/owner.jpg",
+    avatar: "https://images.estate-grid.local/users/owner.jpg",
   },
   buyer: {
-    email: "buyer.seed@kasistay.local",
+    email: "buyer.seed@estate-grid.local",
     name: "Sipho Buyer",
     phone: "+27 82 000 0004",
     role: UserRole.BUYER,
-    avatar: "https://images.kasistay.local/users/buyer.jpg",
+    avatar: "https://images.estate-grid.local/users/buyer.jpg",
   },
   renter: {
-    email: "renter.seed@kasistay.local",
+    email: "renter.seed@estate-grid.local",
     name: "Nomsa Renter",
     phone: "+27 82 000 0005",
     role: UserRole.RENTER,
-    avatar: "https://images.kasistay.local/users/renter.jpg",
+    avatar: "https://images.estate-grid.local/users/renter.jpg",
   },
   provider: {
-    email: "provider.seed@kasistay.local",
+    email: "provider.seed@estate-grid.local",
     name: "Bongani Services",
     phone: "+27 82 000 0006",
     role: UserRole.OWNER,
-    avatar: "https://images.kasistay.local/users/provider.jpg",
+    avatar: "https://images.estate-grid.local/users/provider.jpg",
   },
 } as const;
 
@@ -145,10 +145,10 @@ const staticPages = [
   {
     slug: "about-us",
     type: StaticPageType.ABOUT_US,
-    title: "About Kasi Stay",
-    summary: "How Kasi Stay helps people buy, rent, share, and move locally.",
+    title: "About Estate Grid",
+    summary: "How Estate Grid helps people buy, rent, share, and move locally.",
     content:
-      "Kasi Stay connects property seekers, roommates, service professionals, and local businesses through one trusted platform.",
+      "Estate Grid connects property seekers, roommates, service professionals, and local businesses through one trusted platform.",
   },
   {
     slug: "privacy-policy",
@@ -156,7 +156,7 @@ const staticPages = [
     title: "Privacy Policy",
     summary: "How we collect, use, and protect personal information.",
     content:
-      "This privacy policy explains what data Kasi Stay collects, why it is collected, and how users can request access, correction, or deletion.",
+      "This privacy policy explains what data Estate Grid collects, why it is collected, and how users can request access, correction, or deletion.",
   },
   {
     slug: "terms-and-conditions",
@@ -164,7 +164,7 @@ const staticPages = [
     title: "Terms and Conditions",
     summary: "Platform terms for buyers, renters, agents, and service providers.",
     content:
-      "These terms govern use of Kasi Stay listings, messaging, marketplace postings, professional services, and editorial content.",
+      "These terms govern use of Estate Grid listings, messaging, marketplace postings, professional services, and editorial content.",
   },
   {
     slug: "cookie-policy",
@@ -172,7 +172,7 @@ const staticPages = [
     title: "Cookie Policy",
     summary: "How cookies and similar technologies are used on the platform.",
     content:
-      "Kasi Stay uses cookies for authentication, security, analytics, and experience improvements. Users can manage browser cookie preferences at any time.",
+      "Estate Grid uses cookies for authentication, security, analytics, and experience improvements. Users can manage browser cookie preferences at any time.",
   },
   {
     slug: "paia-manual",
@@ -180,7 +180,7 @@ const staticPages = [
     title: "PAIA Manual",
     summary: "Promotion of Access to Information Act manual.",
     content:
-      "This PAIA manual sets out the information records held by Kasi Stay and the process for access requests under applicable South African law.",
+      "This PAIA manual sets out the information records held by Estate Grid and the process for access requests under applicable South African law.",
   },
 ];
 
@@ -270,13 +270,13 @@ const seedAgency = async (users: Awaited<ReturnType<typeof seedUsers>>) => {
   const agency = await prisma.agency.upsert({
     where: { licenseNumber: "KASI-STAY-AGENCY-001" },
     update: {
-      name: "Kasi Stay Premier Realty",
-      logo: "https://images.kasistay.local/agencies/premier-realty.png",
+      name: "Estate Grid Premier Realty",
+      logo: "https://images.estate-grid.local/agencies/premier-realty.png",
       ownerId: users.owner.id,
     },
     create: {
-      name: "Kasi Stay Premier Realty",
-      logo: "https://images.kasistay.local/agencies/premier-realty.png",
+      name: "Estate Grid Premier Realty",
+      logo: "https://images.estate-grid.local/agencies/premier-realty.png",
       licenseNumber: "KASI-STAY-AGENCY-001",
       ownerId: users.owner.id,
     },
@@ -609,7 +609,7 @@ const seedProperties = async (
     {
       id: "seed-media-buy-primary",
       propertyId: buyProperty.id,
-      url: "https://images.kasistay.local/properties/buy-1.jpg",
+      url: "https://images.estate-grid.local/properties/buy-1.jpg",
       type: PropertyMediaType.IMAGE,
       order: 0,
       isPrimary: true,
@@ -617,7 +617,7 @@ const seedProperties = async (
     {
       id: "seed-media-rent-primary",
       propertyId: rentProperty.id,
-      url: "https://images.kasistay.local/properties/rent-1.jpg",
+      url: "https://images.estate-grid.local/properties/rent-1.jpg",
       type: PropertyMediaType.IMAGE,
       order: 0,
       isPrimary: true,
@@ -625,7 +625,7 @@ const seedProperties = async (
     {
       id: "seed-media-sell-primary",
       propertyId: sellProperty.id,
-      url: "https://images.kasistay.local/properties/sell-1.jpg",
+      url: "https://images.estate-grid.local/properties/sell-1.jpg",
       type: PropertyMediaType.IMAGE,
       order: 0,
       isPrimary: true,
@@ -646,21 +646,21 @@ const seedProperties = async (
     {
       id: "seed-doc-buy-brochure",
       propertyId: buyProperty.id,
-      url: "https://docs.kasistay.local/properties/buy-brochure.pdf",
+      url: "https://docs.estate-grid.local/properties/buy-brochure.pdf",
       type: PropertyDocumentType.BROCHURE,
       label: "Sales brochure",
     },
     {
       id: "seed-doc-rent-brochure",
       propertyId: rentProperty.id,
-      url: "https://docs.kasistay.local/properties/rent-brochure.pdf",
+      url: "https://docs.estate-grid.local/properties/rent-brochure.pdf",
       type: PropertyDocumentType.BROCHURE,
       label: "Rental brochure",
     },
     {
       id: "seed-doc-sell-valuation",
       propertyId: sellProperty.id,
-      url: "https://docs.kasistay.local/properties/sell-valuation.pdf",
+      url: "https://docs.estate-grid.local/properties/sell-valuation.pdf",
       type: PropertyDocumentType.VALUATION,
       label: "Valuation report",
     },
@@ -1035,8 +1035,8 @@ const seedMarketplace = async (users: Awaited<ReturnType<typeof seedUsers>>) => 
       city: "Johannesburg",
       locationText: "Braamfontein",
       imageUrls: json([
-        "https://images.kasistay.local/marketplace/couch-1.jpg",
-        "https://images.kasistay.local/marketplace/couch-2.jpg",
+        "https://images.estate-grid.local/marketplace/couch-1.jpg",
+        "https://images.estate-grid.local/marketplace/couch-2.jpg",
       ]),
       isNegotiable: true,
       publishedAt: date("2026-04-12T00:00:00.000Z"),
@@ -1054,8 +1054,8 @@ const seedMarketplace = async (users: Awaited<ReturnType<typeof seedUsers>>) => 
       city: "Johannesburg",
       locationText: "Braamfontein",
       imageUrls: json([
-        "https://images.kasistay.local/marketplace/couch-1.jpg",
-        "https://images.kasistay.local/marketplace/couch-2.jpg",
+        "https://images.estate-grid.local/marketplace/couch-1.jpg",
+        "https://images.estate-grid.local/marketplace/couch-2.jpg",
       ]),
       isNegotiable: true,
       publishedAt: date("2026-04-12T00:00:00.000Z"),
@@ -1075,7 +1075,7 @@ const seedMarketplace = async (users: Awaited<ReturnType<typeof seedUsers>>) => 
       city: "Pretoria",
       locationText: "Hatfield",
       imageUrls: json([
-        "https://images.kasistay.local/marketplace/fridge-1.jpg",
+        "https://images.estate-grid.local/marketplace/fridge-1.jpg",
       ]),
       isNegotiable: false,
       publishedAt: null,
@@ -1093,7 +1093,7 @@ const seedMarketplace = async (users: Awaited<ReturnType<typeof seedUsers>>) => 
       city: "Pretoria",
       locationText: "Hatfield",
       imageUrls: json([
-        "https://images.kasistay.local/marketplace/fridge-1.jpg",
+        "https://images.estate-grid.local/marketplace/fridge-1.jpg",
       ]),
       isNegotiable: false,
     },
@@ -1134,7 +1134,7 @@ const seedRoommates = async (users: Awaited<ReturnType<typeof seedUsers>>) => {
       preferredGender: GenderPreference.ANY,
       smokingFriendly: false,
       petsFriendly: true,
-      photoUrl: "https://images.kasistay.local/roommates/nomsa.jpg",
+      photoUrl: "https://images.estate-grid.local/roommates/nomsa.jpg",
       status: RoommateProfileStatus.PUBLISHED,
     },
     create: {
@@ -1153,7 +1153,7 @@ const seedRoommates = async (users: Awaited<ReturnType<typeof seedUsers>>) => {
       preferredGender: GenderPreference.ANY,
       smokingFriendly: false,
       petsFriendly: true,
-      photoUrl: "https://images.kasistay.local/roommates/nomsa.jpg",
+      photoUrl: "https://images.estate-grid.local/roommates/nomsa.jpg",
       status: RoommateProfileStatus.PUBLISHED,
     },
   });
@@ -1187,7 +1187,7 @@ const seedServices = async (users: Awaited<ReturnType<typeof seedUsers>>) => {
       phone: users.provider.phone,
       city: "Johannesburg",
       serviceArea: "Johannesburg North and Sandton",
-      logoUrl: "https://images.kasistay.local/services/movefast-logo.png",
+      logoUrl: "https://images.estate-grid.local/services/movefast-logo.png",
       status: ServiceProviderStatus.ACTIVE,
       isVerified: true,
     },
@@ -1201,7 +1201,7 @@ const seedServices = async (users: Awaited<ReturnType<typeof seedUsers>>) => {
       phone: users.provider.phone,
       city: "Johannesburg",
       serviceArea: "Johannesburg North and Sandton",
-      logoUrl: "https://images.kasistay.local/services/movefast-logo.png",
+      logoUrl: "https://images.estate-grid.local/services/movefast-logo.png",
       status: ServiceProviderStatus.ACTIVE,
       isVerified: true,
     },
@@ -1220,7 +1220,7 @@ const seedServices = async (users: Awaited<ReturnType<typeof seedUsers>>) => {
       city: "Johannesburg",
       serviceArea: "Sandton, Rosebank, Midrand",
       imageUrls: json([
-        "https://images.kasistay.local/services/cleaning-1.jpg",
+        "https://images.estate-grid.local/services/cleaning-1.jpg",
       ]),
       publishedAt: date("2026-04-01T00:00:00.000Z"),
     },
@@ -1236,7 +1236,7 @@ const seedServices = async (users: Awaited<ReturnType<typeof seedUsers>>) => {
       city: "Johannesburg",
       serviceArea: "Sandton, Rosebank, Midrand",
       imageUrls: json([
-        "https://images.kasistay.local/services/cleaning-1.jpg",
+        "https://images.estate-grid.local/services/cleaning-1.jpg",
       ]),
       publishedAt: date("2026-04-01T00:00:00.000Z"),
     },
@@ -1255,7 +1255,7 @@ const seedServices = async (users: Awaited<ReturnType<typeof seedUsers>>) => {
       city: "Johannesburg",
       serviceArea: "Johannesburg and Pretoria",
       imageUrls: json([
-        "https://images.kasistay.local/services/transport-1.jpg",
+        "https://images.estate-grid.local/services/transport-1.jpg",
       ]),
       publishedAt: date("2026-04-01T00:00:00.000Z"),
     },
@@ -1271,7 +1271,7 @@ const seedServices = async (users: Awaited<ReturnType<typeof seedUsers>>) => {
       city: "Johannesburg",
       serviceArea: "Johannesburg and Pretoria",
       imageUrls: json([
-        "https://images.kasistay.local/services/transport-1.jpg",
+        "https://images.estate-grid.local/services/transport-1.jpg",
       ]),
       publishedAt: date("2026-04-01T00:00:00.000Z"),
     },
@@ -1601,14 +1601,14 @@ const seedEditorialContent = async (
           title: article.title,
           summary: article.summary,
           content: article.content,
-          coverImageUrl: `https://images.kasistay.local/articles/${article.slug}.jpg`,
+          coverImageUrl: `https://images.estate-grid.local/articles/${article.slug}.jpg`,
           status: article.status,
           publishedAt: article.publishedAt,
         },
         create: {
           ...article,
           authorId: users.admin.id,
-          coverImageUrl: `https://images.kasistay.local/articles/${article.slug}.jpg`,
+          coverImageUrl: `https://images.estate-grid.local/articles/${article.slug}.jpg`,
         },
       }),
     ),
@@ -1644,7 +1644,7 @@ const seedEditorialContent = async (
       title: "Community Guidelines",
       summary: "How users should engage across listings and messaging.",
       content:
-        "Respectful communication, truthful listings, and timely responses help keep Kasi Stay useful for everyone.",
+        "Respectful communication, truthful listings, and timely responses help keep Estate Grid useful for everyone.",
       status: StaticPageStatus.DRAFT,
       publishedAt: null,
       createdById: users.admin.id,
@@ -1655,7 +1655,7 @@ const seedEditorialContent = async (
       title: "Community Guidelines",
       summary: "How users should engage across listings and messaging.",
       content:
-        "Respectful communication, truthful listings, and timely responses help keep Kasi Stay useful for everyone.",
+        "Respectful communication, truthful listings, and timely responses help keep Estate Grid useful for everyone.",
       status: StaticPageStatus.DRAFT,
       createdById: users.admin.id,
     },
@@ -1671,7 +1671,7 @@ const seedCareerAndProfessionalContent = async (
       title: "Community Field Agent",
       summary: "Support onboarding, listing quality, and market coverage in growth areas.",
       description:
-        "Kasi Stay is hiring a field agent to support partner onboarding, listing verification, and market feedback loops.",
+        "Estate Grid is hiring a field agent to support partner onboarding, listing verification, and market feedback loops.",
       location: "Johannesburg",
       employmentType: "Full-time",
       status: CareerPostStatus.PUBLISHED,
@@ -1683,7 +1683,7 @@ const seedCareerAndProfessionalContent = async (
       title: "Community Field Agent",
       summary: "Support onboarding, listing quality, and market coverage in growth areas.",
       description:
-        "Kasi Stay is hiring a field agent to support partner onboarding, listing verification, and market feedback loops.",
+        "Estate Grid is hiring a field agent to support partner onboarding, listing verification, and market feedback loops.",
       location: "Johannesburg",
       employmentType: "Full-time",
       status: CareerPostStatus.PUBLISHED,
@@ -1729,7 +1729,7 @@ const seedCareerAndProfessionalContent = async (
       phone: users.buyer.phone,
       coverLetter:
         "I have five years of community sales experience and strong local market knowledge.",
-      resumeUrl: "https://docs.kasistay.local/careers/sipho-buyer-cv.pdf",
+      resumeUrl: "https://docs.estate-grid.local/careers/sipho-buyer-cv.pdf",
     },
     create: {
       id: "seed-job-application-field-agent",
@@ -1740,7 +1740,7 @@ const seedCareerAndProfessionalContent = async (
       phone: users.buyer.phone,
       coverLetter:
         "I have five years of community sales experience and strong local market knowledge.",
-      resumeUrl: "https://docs.kasistay.local/careers/sipho-buyer-cv.pdf",
+      resumeUrl: "https://docs.estate-grid.local/careers/sipho-buyer-cv.pdf",
     },
   });
 
@@ -1776,10 +1776,10 @@ const seedCareerAndProfessionalContent = async (
     where: { id: "seed-agency-ad-request" },
     update: {
       userId: users.owner.id,
-      agencyName: "Kasi Stay Premier Realty",
+      agencyName: "Estate Grid Premier Realty",
       contactEmail: users.owner.email,
       contactPhone: users.owner.phone,
-      websiteUrl: "https://premier-realty.kasistay.local",
+      websiteUrl: "https://premier-realty.estate-grid.local",
       budget: "R15,000 monthly",
       message: "We want homepage exposure and more qualified buy leads.",
       status: ApplicationReviewStatus.PENDING,
@@ -1790,10 +1790,10 @@ const seedCareerAndProfessionalContent = async (
     create: {
       id: "seed-agency-ad-request",
       userId: users.owner.id,
-      agencyName: "Kasi Stay Premier Realty",
+      agencyName: "Estate Grid Premier Realty",
       contactEmail: users.owner.email,
       contactPhone: users.owner.phone,
-      websiteUrl: "https://premier-realty.kasistay.local",
+      websiteUrl: "https://premier-realty.estate-grid.local",
       budget: "R15,000 monthly",
       message: "We want homepage exposure and more qualified buy leads.",
       status: ApplicationReviewStatus.PENDING,
@@ -1812,10 +1812,10 @@ const seedAttorneyProfiles = async (
       description:
         "Conveyancing and transfer support for buyers, sellers, and developers.",
       city: "Johannesburg",
-      email: "thembakhumalo@kasistay.local",
+      email: "thembakhumalo@estate-grid.local",
       phone: "+27 11 000 9000",
-      websiteUrl: "https://khumalo-law.kasistay.local",
-      imageUrl: "https://images.kasistay.local/attorneys/khumalo.jpg",
+      websiteUrl: "https://khumalo-law.estate-grid.local",
+      imageUrl: "https://images.estate-grid.local/attorneys/khumalo.jpg",
       status: AttorneyProfileStatus.PUBLISHED,
       publishedAt: date("2026-04-05T00:00:00.000Z"),
       createdById: users.admin.id,
@@ -1827,10 +1827,10 @@ const seedAttorneyProfiles = async (
       description:
         "Conveyancing and transfer support for buyers, sellers, and developers.",
       city: "Johannesburg",
-      email: "thembakhumalo@kasistay.local",
+      email: "thembakhumalo@estate-grid.local",
       phone: "+27 11 000 9000",
-      websiteUrl: "https://khumalo-law.kasistay.local",
-      imageUrl: "https://images.kasistay.local/attorneys/khumalo.jpg",
+      websiteUrl: "https://khumalo-law.estate-grid.local",
+      imageUrl: "https://images.estate-grid.local/attorneys/khumalo.jpg",
       status: AttorneyProfileStatus.PUBLISHED,
       publishedAt: date("2026-04-05T00:00:00.000Z"),
       createdById: users.admin.id,
@@ -2010,7 +2010,7 @@ const main = async () => {
   );
   await seedAgentMonetisation(users, plans, properties);
 
-  console.info("[db seed] Seeded demo data across core and Kasi Stay modules.");
+  console.info("[db seed] Seeded demo data across core and Estate Grid modules.");
 };
 
 await main()

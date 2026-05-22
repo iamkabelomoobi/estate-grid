@@ -1,4 +1,4 @@
-import { Prisma, Property, Report, ReportStatus } from "@kasistay/db";
+import { Prisma, Property, Report, ReportStatus } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { badInput } from "../../../utils/errors";
 import { propertyInclude } from "../../properties/queries";

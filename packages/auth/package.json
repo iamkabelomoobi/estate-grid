@@ -1,5 +1,5 @@
 {
-  "name": "@kasistay/auth",
+  "name": "@estate-grid/auth",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
@@ -17,7 +17,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json && node ../../scripts/fix-esm-specifiers.mjs dist",
     "check-types": "tsc -p tsconfig.json --noEmit",
-    "test": "DATABASE_URL=postgresql://kasistay:kasistay@127.0.0.1:5432/kasistay_dev node --import tsx --test tests/*.test.ts"
+    "test": "DATABASE_URL=postgresql://estate-grid:estate-grid@127.0.0.1:5432/estate-grid_dev node --import tsx --test tests/*.test.ts"
   },
   "keywords": [],
   "author": "",
@@ -28,9 +28,9 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
-    "@kasistay/db": "*",
-    "@kasistay/email": "*",
-    "@kasistay/logger": "*",
+    "@estate-grid/db": "*",
+    "@estate-grid/email": "*",
+    "@estate-grid/logger": "*",
     "better-auth": "^1.5.5"
   }
 }

@@ -1,5 +1,5 @@
-import { createRoleRecord } from "@kasistay/auth";
-import { ApplicationReviewStatus, UserRole } from "@kasistay/db";
+import { createRoleRecord } from "@estate-grid/auth";
+import { ApplicationReviewStatus, UserRole } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { badInput, notFound } from "../../../utils/errors";
 import { notifyUsers } from "../../../utils/notify-users";

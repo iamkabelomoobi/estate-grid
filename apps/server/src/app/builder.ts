@@ -5,9 +5,9 @@ import ErrorsPlugin from "@pothos/plugin-errors";
 import ValidationPlugin from "@pothos/plugin-validation";
 import ScopeAuthPlugin from "@pothos/plugin-scope-auth";
 import SimpleObjectsPlugin from "@pothos/plugin-simple-objects";
-import { prisma } from "@kasistay/db";
-import { getDatamodel } from "@kasistay/db/generated/pothos-types";
-import type PrismaTypes from "@kasistay/db/generated/pothos-types";
+import { prisma } from "@estate-grid/db";
+import { getDatamodel } from "@estate-grid/db/generated/pothos-types";
+import type PrismaTypes from "@estate-grid/db/generated/pothos-types";
 import type { Context } from "./context";
 
 export const builder = new SchemaBuilder<{

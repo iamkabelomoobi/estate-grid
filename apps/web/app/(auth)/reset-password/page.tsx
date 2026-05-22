@@ -5,7 +5,7 @@ export default function ResetPasswordPage() {
   return (
     <AuthPanel
       eyebrow="Reset password"
-      subtitle="Choose a fresh password for your kasistay account."
+      subtitle="Choose a fresh password for your estate-grid account."
       title="Create New Password"
     >
       <ResetPasswordForm />

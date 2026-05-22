@@ -53,7 +53,7 @@ import {
 } from "@/components/ui/sidebar";
 import { NavUser } from "@/components/nav-user";
 import { cn } from "@/lib/utils";
-import { UserProfileFragment } from "@kasistay/client";
+import { UserProfileFragment } from "@estate-grid/client";
 
 type NavItem = {
   label: string;

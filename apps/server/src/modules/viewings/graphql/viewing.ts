@@ -1,4 +1,4 @@
-import type { Property, Viewing } from "@kasistay/db";
+import type { Property, Viewing } from "@estate-grid/db";
 import { builder } from "../../../app/builder";
 import { PropertyRef } from "../../properties/graphql/property";
 import {

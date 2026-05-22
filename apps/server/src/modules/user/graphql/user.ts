@@ -1,4 +1,5 @@
 import { builder } from "../../../app/builder";
+import { badInput, unauthorized } from "../../../utils/errors";
 import { getMe, getUser, getUsers } from "../queries";
 import { deleteUser, updateUser } from "../mutations";
 
@@ -83,14 +84,20 @@ builder.mutationField("updateUser", (t) =>
     resolve: async (query, _, args, ctx) => {
       const user = ctx.assertAuth();
       if (!ctx.isAdmin && user.id !== String(args.id)) {
-        throw new Error("Forbidden: admin or owner access required");
+        unauthorized();
       }
+
+      if (args.input.email !== undefined) {
+        badInput(
+          "Email changes must use the authenticated email-change flow so the new address can be verified.",
+        );
+      }
+
       return updateUser(
         String(args.id),
         {
-          ...(args.input.name && { name: args.input.name }),
-          ...(args.input.email && { email: args.input.email }),
-          ...(args.input.image && { image: args.input.image }),
+          ...(args.input.name != null && { name: args.input.name }),
+          ...(args.input.image !== undefined && { image: args.input.image }),
         },
         ctx,
         query,

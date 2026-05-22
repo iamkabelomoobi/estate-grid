@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { MessageType } from "@kasistay/db";
+import { MessageType } from "@estate-grid/db";
 import {
   markConversationRead,
   sendMessageRecord,

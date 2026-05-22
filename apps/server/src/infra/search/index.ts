@@ -1,4 +1,4 @@
-import { logger } from "@kasistay/logger";
+import { logger } from "@estate-grid/logger";
 import { Client, type estypes } from "@elastic/elasticsearch";
 import { config } from "../config";
 

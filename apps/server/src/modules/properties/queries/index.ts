@@ -4,7 +4,7 @@ import {
   Prisma,
   PropertyStatus,
   PropertyType,
-} from "@kasistay/db";
+} from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { badInput, notFound } from "../../../utils/errors";
 

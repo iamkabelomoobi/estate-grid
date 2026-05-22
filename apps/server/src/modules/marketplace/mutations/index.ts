@@ -3,7 +3,7 @@ import {
   MarketplaceItemCondition,
   MarketplaceItemStatus,
   Prisma,
-} from "@kasistay/db";
+} from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { badInput, notFound, unauthorized } from "../../../utils/errors";
 import { generateUniqueSlug } from "../../../utils/generate-unique-slug";

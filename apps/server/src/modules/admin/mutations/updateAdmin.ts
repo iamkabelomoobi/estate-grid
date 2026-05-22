@@ -1,9 +1,9 @@
 import { Context } from "../../../app/context";
-import { Prisma } from "@kasistay/db";
+import { Prisma } from "@estate-grid/db";
 
 export const updateAdmin = async (
   id: string,
-  data: { name?: string; email?: string; image?: string },
+  data: { name?: string; image?: string },
   ctx: Context,
   query?: object,
   transaction?: Prisma.TransactionClient,

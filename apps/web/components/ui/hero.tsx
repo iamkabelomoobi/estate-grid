@@ -181,7 +181,7 @@ const Hero = () => {
             <span className="grid h-11 w-11 place-items-center rounded-full bg-black text-white">
               <HomeIcon />
             </span>
-            <span className="text-lg font-bold tracking-tight">kasistay</span>
+            <span className="text-lg font-bold tracking-tight">estate-grid</span>
           </Link>
 
           <nav className="hidden items-center gap-10 text-sm font-medium text-black/75 lg:flex">

@@ -1,0 +1,464 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Estate Grid Server API",
+    "version": "1.0.0",
+    "description": "OpenAPI reference for the Estate Grid HTTP surface.\n\nThe platform is primarily GraphQL-first. Swagger documents the shared transport endpoints, authentication flows, and the GraphQL entrypoint.\n\nCommon GraphQL operations include:\n- `properties, property, propertyMediaUploadTarget`\n- `roommateProfiles, myRoommateProfile, upsertRoommateProfile`\n- `marketplaceItems, createMarketplaceItem, publishMarketplaceItem`\n- `serviceListings, createServiceListing, requestService`\n- `conversations, messages, sendMessage, markConversationRead`\n- `articles, articleBySlug, staticPages, careerPosts`\n- `applyAsAgent, requestAgencyAdvertising, contactMessages`\n\nFor the full typed GraphQL contract, also see the exported `schema.graphql` artifact in `packages/client/schema.graphql`."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000",
+      "description": "Current server base URL"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Documentation",
+      "description": "Swagger/OpenAPI discovery endpoints"
+    },
+    {
+      "name": "Authentication",
+      "description": "Better Auth HTTP endpoints used by web and mobile clients"
+    },
+    {
+      "name": "GraphQL",
+      "description": "Primary API transport for property, marketplace, services, and CMS features"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "sessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "better-auth.session_token",
+        "description": "Better Auth session cookie. The exact cookie set is managed by Better Auth during sign-in and sign-up flows."
+      }
+    },
+    "schemas": {
+      "SignUpEmailRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "email",
+          "password",
+          "name"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "SignInEmailRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "AuthSuccessResponse": {
+        "type": "object",
+        "additionalProperties": true,
+        "description": "Better Auth response payload. Cookies are the primary session transport."
+      },
+      "SessionUser": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "id",
+          "name",
+          "email",
+          "role"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "ADMIN",
+              "AGENT",
+              "OWNER",
+              "BUYER",
+              "RENTER"
+            ]
+          },
+          "image": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uri"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "SessionState": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "id",
+          "token",
+          "expiresAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "AuthSessionResponse": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "user",
+          "session"
+        ],
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/SessionUser"
+          },
+          "session": {
+            "$ref": "#/components/schemas/SessionState"
+          }
+        }
+      },
+      "GraphQLRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "query"
+        ],
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "GraphQL document string"
+          },
+          "operationName": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "variables": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "GraphQLError": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "message"
+        ],
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "path": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "GraphQLResponse": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "data": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": true
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GraphQLError"
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/docs": {
+      "get": {
+        "tags": [
+          "Documentation"
+        ],
+        "operationId": "renderDocs",
+        "summary": "Render Swagger UI",
+        "description": "Serves the interactive Swagger/OpenAPI browser for the Estate Grid server.",
+        "responses": {
+          "200": {
+            "description": "Swagger UI HTML",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/openapi.json": {
+      "get": {
+        "tags": [
+          "Documentation"
+        ],
+        "operationId": "getOpenApiDocument",
+        "summary": "Fetch the OpenAPI document",
+        "responses": {
+          "200": {
+            "description": "OpenAPI 3.1 JSON document",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/sign-up/email": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "signUpWithEmail",
+        "summary": "Register a user with email and password",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUpEmailRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User created and session cookies established by Better Auth",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/sign-in/email": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "signInWithEmail",
+        "summary": "Sign in with email and password",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignInEmailRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Session established and returned through Better Auth cookies",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/sign-out": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "signOut",
+        "summary": "Sign out the current user",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session cleared",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/get-session": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "getSession",
+        "summary": "Get the current authenticated session",
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current session or null when unauthenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/AuthSessionResponse"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/graphql": {
+      "post": {
+        "tags": [
+          "GraphQL"
+        ],
+        "operationId": "executeGraphQL",
+        "summary": "Execute GraphQL operations",
+        "description": "Primary API transport for Estate Grid.\n\nUse this endpoint for property listings, saved searches, alerts, reviews, messaging, marketplace, roommates, services, CMS content, careers, and professional onboarding.\n\nSome operations are public and others require the Better Auth session cookie.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GraphQLRequest"
+              },
+              "examples": {
+                "listProperties": {
+                  "summary": "Query published properties",
+                  "value": {
+                    "query": "query Properties { properties { id title status } }"
+                  }
+                },
+                "sendMessage": {
+                  "summary": "Send a message in a conversation",
+                  "value": {
+                    "query": "mutation SendMessage($conversationId: ID!, $input: SendMessageInput!) { sendMessage(conversationId: $conversationId, input: $input) { id body } }",
+                    "variables": {
+                      "conversationId": "conversation-id",
+                      "input": {
+                        "body": "Hello from Swagger"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "GraphQL execution result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphQLResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

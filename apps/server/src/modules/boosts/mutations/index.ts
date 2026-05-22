@@ -1,4 +1,4 @@
-import { ListingBoostType, Prisma, PropertyStatus } from "@kasistay/db";
+import { ListingBoostType, Prisma, PropertyStatus } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { enqueuePropertySearchSync } from "../../search/jobs";
 import { badInput, notFound, unauthorized } from "../../../utils/errors";

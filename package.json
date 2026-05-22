@@ -1,12 +1,12 @@
 {
-  "name": "kasistay",
+  "name": "estate-grid",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "start:server": "npm run build && node --experimental-specifier-resolution=node apps/server/dist/index.js",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "lint:apps": "npm run lint --workspace web && npm run lint --workspace @kasistay/server && npm run lint --workspace mobile",
+    "lint:apps": "npm run lint --workspace web && npm run lint --workspace @estate-grid/server && npm run lint --workspace mobile",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,mjs,cjs,css,json,md}\"",
     "format:check:apps": "prettier --check \"apps/**/*.{ts,tsx,js,jsx,mjs,cjs,css,json,md}\"",
     "check-types": "turbo run check-types",

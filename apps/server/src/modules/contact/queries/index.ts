@@ -1,4 +1,4 @@
-import { ContactMessageStatus, Prisma } from "@kasistay/db";
+import { ContactMessageStatus, Prisma } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { parseEnum } from "../../../utils/parse-enum";
 
