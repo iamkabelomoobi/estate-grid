@@ -21,6 +21,11 @@ export interface EmailVerificationTemplateParams extends BaseTemplateParams {
   verificationUrl: string;
 }
 
+export interface EmailChangeConfirmationTemplateParams
+  extends BaseTemplateParams {
+  confirmationUrl: string;
+}
+
 export interface PasswordUpdateTemplateParams extends BaseTemplateParams {
   name: string;
 }

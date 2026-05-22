@@ -1,4 +1,4 @@
-import { AttorneyProfileStatus } from "@kasistay/db";
+import { AttorneyProfileStatus } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { notFound } from "../../../utils/errors";
 import { generateUniqueSlug } from "../../../utils/generate-unique-slug";

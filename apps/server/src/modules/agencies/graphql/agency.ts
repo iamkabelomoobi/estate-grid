@@ -1,4 +1,4 @@
-import type { Agency } from "@kasistay/db";
+import type { Agency } from "@estate-grid/db";
 import { builder } from "../../../app/builder";
 import {
   addAgencyAgent,

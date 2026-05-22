@@ -1,5 +1,5 @@
 import { Context } from "../../../app/context";
-import { Prisma } from "@kasistay/db";
+import { Prisma } from "@estate-grid/db";
 
 export const deleteUser = async (
   id: string,

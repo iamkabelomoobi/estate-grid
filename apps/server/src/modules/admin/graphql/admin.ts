@@ -1,4 +1,5 @@
 import { builder } from "../../../app/builder";
+import { badInput } from "../../../utils/errors";
 import { getAdmin, getAdmins } from "../queries";
 import { deleteAdmin, updateAdmin } from "../mutations";
 
@@ -54,12 +55,17 @@ builder.mutationField("updateAdmin", (t) =>
       input: t.arg({ type: AdminUpdateInput, required: true }),
     },
     resolve: async (query, _, args, ctx) => {
+      if (args.input.email !== undefined) {
+        badInput(
+          "Email changes must use the authenticated email-change flow so the new address can be verified.",
+        );
+      }
+
       return updateAdmin(
         String(args.id),
         {
-          ...(args.input.name && { name: args.input.name }),
-          ...(args.input.email && { email: args.input.email }),
-          ...(args.input.image && { image: args.input.image }),
+          ...(args.input.name != null && { name: args.input.name }),
+          ...(args.input.image != null && { image: args.input.image }),
         },
         ctx,
         query,

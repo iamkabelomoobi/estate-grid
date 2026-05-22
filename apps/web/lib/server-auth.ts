@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
-import { logger } from "@kasistay/logger";
-import type { Session } from "@kasistay/auth";
+import { logger } from "@estate-grid/logger";
+import type { Session } from "@estate-grid/auth";
 
 const authBaseURL =
   process.env.NEXT_PUBLIC_BETTER_AUTH_URL || process.env.NEXT_PUBLIC_AUTH_URL;

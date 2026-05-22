@@ -1,0 +1,2816 @@
+# Generated from schema.graphql. Do not edit manually.
+
+# Run `npm run generate:graphql-operations --workspace @estate-grid/client`.
+
+
+
+query QueryAdmin($id: ID!) {
+  admin(id: $id) {
+    id
+    userId
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}
+
+query QueryAdminAnalyticsOverview {
+  adminAnalyticsOverview {
+    activeSubscriptions
+    openReports
+    pendingProperties
+    totalInquiries
+    totalProperties
+  }
+}
+
+query QueryAdminPendingProperties {
+  adminPendingProperties {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+query QueryAdmins {
+  admins {
+    id
+    userId
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}
+
+query QueryAgency($agencyId: ID!) {
+  agency(agencyId: $agencyId) {
+    id
+    name
+    createdAt
+    updatedAt
+    licenseNumber
+    logo
+    ownerId
+  }
+}
+
+query QueryAgencyAdvertisingRequests($filter: AgencyAdvertisingRequestFilterInput) {
+  agencyAdvertisingRequests(filter: $filter) {
+    id
+    status
+    createdAt
+    updatedAt
+    agencyName
+    budget
+    contactEmail
+    contactPhone
+    message
+    rejectionReason
+  }
+}
+
+query QueryAmenities($filter: AmenityFilterInput) {
+  amenities(filter: $filter) {
+    id
+    name
+    category
+  }
+}
+
+query QueryArticle($articleId: ID!) {
+  article(articleId: $articleId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    authorId
+    authorName
+    categoryId
+    content
+    category {
+      id
+      slug
+      name
+      createdAt
+    }
+  }
+}
+
+query QueryArticleBySlug($slug: String!) {
+  articleBySlug(slug: $slug) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    authorId
+    authorName
+    categoryId
+    content
+    category {
+      id
+      slug
+      name
+      createdAt
+    }
+  }
+}
+
+query QueryArticleCategories {
+  articleCategories {
+    id
+    slug
+    name
+    createdAt
+    updatedAt
+    code
+  }
+}
+
+query QueryArticles($filter: ArticleFilterInput) {
+  articles(filter: $filter) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    authorId
+    authorName
+    categoryId
+    content
+    category {
+      id
+      slug
+      name
+      createdAt
+    }
+  }
+}
+
+query QueryAttorney($attorneyId: ID!) {
+  attorney(attorneyId: $attorneyId) {
+    id
+    slug
+    name
+    email
+    status
+    createdAt
+    updatedAt
+    city
+    createdById
+    description
+  }
+}
+
+query QueryAttorneys($filter: AttorneyFilterInput) {
+  attorneys(filter: $filter) {
+    id
+    slug
+    name
+    email
+    status
+    createdAt
+    updatedAt
+    city
+    createdById
+    description
+  }
+}
+
+query QueryCareerPost($careerPostId: ID!) {
+  careerPost(careerPostId: $careerPostId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    createdById
+    description
+    employmentType
+    location
+  }
+}
+
+query QueryCareerPosts($filter: CareerPostFilterInput) {
+  careerPosts(filter: $filter) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    createdById
+    description
+    employmentType
+    location
+  }
+}
+
+query QueryContactMessages($filter: ContactMessageFilterInput) {
+  contactMessages(filter: $filter) {
+    id
+    name
+    email
+    status
+    createdAt
+    updatedAt
+    message
+    phone
+    subject
+    userId
+  }
+}
+
+query QueryConversation($conversationId: ID!) {
+  conversation(conversationId: $conversationId) {
+    id
+    createdAt
+    updatedAt
+    contextId
+    contextType
+    createdById
+    lastMessageAt
+    subject
+    participants {
+      archivedAt
+      conversationId
+      joinedAt
+      lastReadAt
+    }
+  }
+}
+
+query QueryConversations($filter: ConversationFilterInput) {
+  conversations(filter: $filter) {
+    id
+    createdAt
+    updatedAt
+    contextId
+    contextType
+    createdById
+    lastMessageAt
+    subject
+    participants {
+      archivedAt
+      conversationId
+      joinedAt
+      lastReadAt
+    }
+  }
+}
+
+query QueryInquiries($filter: InquiryFilterInput) {
+  inquiries(filter: $filter) {
+    id
+    name
+    email
+    status
+    createdAt
+    updatedAt
+    message
+    phone
+    propertyId
+    source
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+query QueryInquiry($inquiryId: ID!) {
+  inquiry(inquiryId: $inquiryId) {
+    id
+    name
+    email
+    status
+    createdAt
+    updatedAt
+    message
+    phone
+    propertyId
+    source
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+query QueryMarketplaceItem($itemId: ID!) {
+  marketplaceItem(itemId: $itemId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    archivedAt
+    category
+    city
+    condition
+  }
+}
+
+query QueryMarketplaceItems($filter: MarketplaceItemFilterInput) {
+  marketplaceItems(filter: $filter) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    archivedAt
+    category
+    city
+    condition
+  }
+}
+
+query QueryMe {
+  me {
+    id
+    name
+    email
+    role
+    emailVerified
+    image
+    admin {
+      id
+      userId
+    }
+    renter {
+      id
+      createdAt
+      updatedAt
+      userId
+    }
+  }
+}
+
+query QueryMessages($conversationId: ID!, $limit: Int, $offset: Int) {
+  messages(conversationId: $conversationId, limit: $limit, offset: $offset) {
+    id
+    createdAt
+    updatedAt
+    body
+    conversationId
+    senderId
+    type
+  }
+}
+
+query QueryMyMarketplaceItems {
+  myMarketplaceItems {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    archivedAt
+    category
+    city
+    condition
+  }
+}
+
+query QueryMyProfile {
+  myProfile {
+    id
+    createdAt
+    updatedAt
+    userId
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}
+
+query QueryMyRoommateProfile {
+  myRoommateProfile {
+    id
+    status
+    createdAt
+    updatedAt
+    age
+    area
+    bio
+    budgetMax
+    budgetMin
+    city
+  }
+}
+
+query QueryMyServiceRequests {
+  myServiceRequests {
+    id
+    status
+    createdAt
+    updatedAt
+    listingId
+    message
+    preferredDate
+    requesterId
+    requesterName
+    listing {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+query QueryMySubscriptions {
+  mySubscriptions {
+    id
+    createdAt
+    updatedAt
+    agentId
+    expiresAt
+    isActive
+    planId
+    startsAt
+    plan {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+query QueryNotifications($filter: NotificationFilterInput) {
+  notifications(filter: $filter) {
+    id
+    title
+    createdAt
+    updatedAt
+    body
+    isRead
+    metadataJson
+    type
+    userId
+  }
+}
+
+query QueryProfessionalApplications($filter: AgentApplicationFilterInput) {
+  professionalApplications(filter: $filter) {
+    id
+    status
+    createdAt
+    updatedAt
+    applicantEmail
+    applicantName
+    city
+    experience
+    licenseNumber
+    motivation
+  }
+}
+
+query QueryProperties($filter: PropertyFilterInput) {
+  properties(filter: $filter) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+query QueryProperty($slug: String!) {
+  property(slug: $slug) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+query QueryPropertyAnalytics($propertyId: ID!) {
+  propertyAnalytics(propertyId: $propertyId) {
+    inquiries
+    reviews
+    viewings
+    views
+  }
+}
+
+query QueryPropertyBoosts($propertyId: ID!) {
+  propertyBoosts(propertyId: $propertyId) {
+    id
+    createdAt
+    updatedAt
+    agentId
+    expiresAt
+    propertyId
+    startsAt
+    type
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+query QueryPropertyBuyDetail($propertyId: ID!) {
+  propertyBuyDetail(propertyId: $propertyId) {
+    id
+    developerName
+    handoverDate
+    isDeveloper
+    ownerType
+    ownership
+    projectName
+    paymentPlan {
+      id
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+query QueryPropertyMedia($propertyId: ID!) {
+  propertyMedia(propertyId: $propertyId) {
+    id
+    createdAt
+    updatedAt
+    isPrimary
+    order
+    type
+    url
+  }
+}
+
+query QueryPropertyPriceHistory($propertyId: ID!) {
+  propertyPriceHistory(propertyId: $propertyId) {
+    id
+    changedAt
+    price
+    propertyId
+  }
+}
+
+query QueryPropertyRentDetail($propertyId: ID!) {
+  propertyRentDetail(propertyId: $propertyId) {
+    id
+    cheques
+    chillerIncluded
+    depositAmount
+    maintenanceBy
+    minLeaseTerm
+    petsAllowed
+  }
+}
+
+query QueryPropertyReviews($propertyId: ID!) {
+  propertyReviews(propertyId: $propertyId) {
+    id
+    createdAt
+    updatedAt
+    comment
+    propertyId
+    rating
+    userId
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+query QueryPropertySearch($filter: PropertySearchInput) {
+  propertySearch(filter: $filter) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+query QueryPropertySellDetail($propertyId: ID!) {
+  propertySellDetail(propertyId: $propertyId) {
+    id
+    commissionPaidBy
+    inspectionStatus
+    isOffMarket
+    propertyId
+    sellerType
+    priceHistory {
+      id
+      changedAt
+      price
+      propertyId
+    }
+  }
+}
+
+query QueryPropertySellPriceHistory($propertyId: ID!) {
+  propertySellPriceHistory(propertyId: $propertyId) {
+    id
+    changedAt
+    price
+    propertyId
+  }
+}
+
+query QueryRenter($id: ID!) {
+  renter(id: $id) {
+    id
+    createdAt
+    updatedAt
+    userId
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}
+
+query QueryRenters($search: RenterSearchInput) {
+  renters(search: $search) {
+    id
+    createdAt
+    updatedAt
+    userId
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}
+
+query QueryReports($filter: ReportFilterInput) {
+  reports(filter: $filter) {
+    id
+    status
+    createdAt
+    updatedAt
+    description
+    propertyId
+    reason
+    userId
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+query QueryRoommateProfile($profileId: ID!) {
+  roommateProfile(profileId: $profileId) {
+    id
+    status
+    createdAt
+    updatedAt
+    age
+    area
+    bio
+    budgetMax
+    budgetMin
+    city
+  }
+}
+
+query QueryRoommateProfiles($filter: RoommateProfileFilterInput) {
+  roommateProfiles(filter: $filter) {
+    id
+    status
+    createdAt
+    updatedAt
+    age
+    area
+    bio
+    budgetMax
+    budgetMin
+    city
+  }
+}
+
+query QuerySavedMarketplaceItems {
+  savedMarketplaceItems {
+    itemId
+    savedAt
+    userId
+    item {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+query QuerySavedProperties {
+  savedProperties {
+    propertyId
+    savedAt
+    userId
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+query QuerySavedRoommateProfiles {
+  savedRoommateProfiles {
+    profileId
+    savedAt
+    userId
+    profile {
+      id
+      status
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+query QuerySavedSearches {
+  savedSearches {
+    id
+    createdAt
+    updatedAt
+    alertEnabled
+    filtersJson
+    lastNotifiedAt
+    userId
+  }
+}
+
+query QueryServiceListing($listingId: ID!) {
+  serviceListing(listingId: $listingId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    category
+    city
+    currency
+    description
+    provider {
+      id
+      slug
+      email
+      status
+    }
+  }
+}
+
+query QueryServiceListings($filter: ServiceListingFilterInput) {
+  serviceListings(filter: $filter) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    category
+    city
+    currency
+    description
+    provider {
+      id
+      slug
+      email
+      status
+    }
+  }
+}
+
+query QueryServiceProvider($providerId: ID!) {
+  serviceProvider(providerId: $providerId) {
+    id
+    slug
+    email
+    status
+    createdAt
+    updatedAt
+    businessName
+    city
+    description
+    isVerified
+  }
+}
+
+query QueryServiceProviders($filter: ServiceProviderFilterInput) {
+  serviceProviders(filter: $filter) {
+    id
+    slug
+    email
+    status
+    createdAt
+    updatedAt
+    businessName
+    city
+    description
+    isVerified
+  }
+}
+
+query QuerySimilarProperties($limit: Int, $propertyId: ID!) {
+  similarProperties(limit: $limit, propertyId: $propertyId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+query QueryStaticPage($pageId: ID!) {
+  staticPage(pageId: $pageId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    content
+    createdById
+    publishedAt
+    summary
+  }
+}
+
+query QueryStaticPageBySlug($slug: String!) {
+  staticPageBySlug(slug: $slug) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    content
+    createdById
+    publishedAt
+    summary
+  }
+}
+
+query QueryStaticPages($filter: StaticPageFilterInput) {
+  staticPages(filter: $filter) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    content
+    createdById
+    publishedAt
+    summary
+  }
+}
+
+query QuerySubscriptionPlans {
+  subscriptionPlans {
+    id
+    name
+    createdAt
+    updatedAt
+    boostCredits
+    durationDays
+    featuresJson
+    listingLimit
+    price
+  }
+}
+
+query QueryUser($id: ID!) {
+  user(id: $id) {
+    id
+    name
+    email
+    role
+    emailVerified
+    image
+    admin {
+      id
+      userId
+    }
+    renter {
+      id
+      createdAt
+      updatedAt
+      userId
+    }
+  }
+}
+
+query QueryUsers($search: UserSearchInput) {
+  users(search: $search) {
+    id
+    name
+    email
+    role
+    emailVerified
+    image
+    admin {
+      id
+      userId
+    }
+    renter {
+      id
+      createdAt
+      updatedAt
+      userId
+    }
+  }
+}
+
+query QueryViewing($viewingId: ID!) {
+  viewing(viewingId: $viewingId) {
+    id
+    status
+    createdAt
+    updatedAt
+    inquiryId
+    propertyId
+    scheduledAt
+    userId
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+query QueryViewings($filter: ViewingFilterInput) {
+  viewings(filter: $filter) {
+    id
+    status
+    createdAt
+    updatedAt
+    inquiryId
+    propertyId
+    scheduledAt
+    userId
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationAddAgencyAgent($agencyId: ID!, $agentId: ID!) {
+  addAgencyAgent(agencyId: $agencyId, agentId: $agentId) {
+    id
+    name
+    createdAt
+    updatedAt
+    licenseNumber
+    logo
+    ownerId
+  }
+}
+
+mutation MutationAddPropertyMedia($input: AddPropertyMediaInput!, $propertyId: ID!) {
+  addPropertyMedia(input: $input, propertyId: $propertyId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+mutation MutationApplyAsAgent($input: AgentApplicationInput!) {
+  applyAsAgent(input: $input) {
+    id
+    status
+    createdAt
+    updatedAt
+    applicantEmail
+    applicantName
+    city
+    experience
+    licenseNumber
+    motivation
+  }
+}
+
+mutation MutationApproveAgentApplication($applicationId: ID!) {
+  approveAgentApplication(applicationId: $applicationId) {
+    id
+    status
+    createdAt
+    updatedAt
+    applicantEmail
+    applicantName
+    city
+    experience
+    licenseNumber
+    motivation
+  }
+}
+
+mutation MutationApprovePropertyForAdmin($propertyId: ID!) {
+  approvePropertyForAdmin(propertyId: $propertyId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+mutation MutationArchiveArticle($articleId: ID!) {
+  archiveArticle(articleId: $articleId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    authorId
+    authorName
+    categoryId
+    content
+    category {
+      id
+      slug
+      name
+      createdAt
+    }
+  }
+}
+
+mutation MutationArchiveCareerPost($careerPostId: ID!) {
+  archiveCareerPost(careerPostId: $careerPostId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    createdById
+    description
+    employmentType
+    location
+  }
+}
+
+mutation MutationArchiveConversation($conversationId: ID!) {
+  archiveConversation(conversationId: $conversationId) {
+    archivedAt
+    conversationId
+    joinedAt
+    lastReadAt
+    userEmail
+    userId
+  }
+}
+
+mutation MutationArchiveMarketplaceItem($itemId: ID!) {
+  archiveMarketplaceItem(itemId: $itemId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    archivedAt
+    category
+    city
+    condition
+  }
+}
+
+mutation MutationArchiveProperty($propertyId: ID!) {
+  archiveProperty(propertyId: $propertyId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+mutation MutationArchiveStaticPage($pageId: ID!) {
+  archiveStaticPage(pageId: $pageId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    content
+    createdById
+    publishedAt
+    summary
+  }
+}
+
+mutation MutationCalculateAffordability($input: AffordabilityCalculatorInput!) {
+  calculateAffordability(input: $input) {
+    disposableIncome
+    estimatedPurchasePrice
+    maxAffordableRepayment
+    maxLoanAmount
+  }
+}
+
+mutation MutationCalculateBond($input: BondCalculatorInput!) {
+  calculateBond(input: $input) {
+    monthlyRepayment
+    principal
+    totalInterest
+    totalRepayment
+  }
+}
+
+mutation MutationCancelViewing($viewingId: ID!) {
+  cancelViewing(viewingId: $viewingId) {
+    id
+    status
+    createdAt
+    updatedAt
+    inquiryId
+    propertyId
+    scheduledAt
+    userId
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationCompleteViewing($viewingId: ID!) {
+  completeViewing(viewingId: $viewingId) {
+    id
+    status
+    createdAt
+    updatedAt
+    inquiryId
+    propertyId
+    scheduledAt
+    userId
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationConfirmViewing($viewingId: ID!) {
+  confirmViewing(viewingId: $viewingId) {
+    id
+    status
+    createdAt
+    updatedAt
+    inquiryId
+    propertyId
+    scheduledAt
+    userId
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationCreateAgency($input: AgencyInput!) {
+  createAgency(input: $input) {
+    id
+    name
+    createdAt
+    updatedAt
+    licenseNumber
+    logo
+    ownerId
+  }
+}
+
+mutation MutationCreateAmenity($input: AmenityInput!) {
+  createAmenity(input: $input) {
+    id
+    name
+    category
+  }
+}
+
+mutation MutationCreateArticle($input: ArticleInput!) {
+  createArticle(input: $input) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    authorId
+    authorName
+    categoryId
+    content
+    category {
+      id
+      slug
+      name
+      createdAt
+    }
+  }
+}
+
+mutation MutationCreateAttorneyProfile($input: AttorneyProfileInput!) {
+  createAttorneyProfile(input: $input) {
+    id
+    slug
+    name
+    email
+    status
+    createdAt
+    updatedAt
+    city
+    createdById
+    description
+  }
+}
+
+mutation MutationCreateCareerPost($input: CareerPostInput!) {
+  createCareerPost(input: $input) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    createdById
+    description
+    employmentType
+    location
+  }
+}
+
+mutation MutationCreateConversation($input: CreateConversationInput!) {
+  createConversation(input: $input) {
+    id
+    createdAt
+    updatedAt
+    contextId
+    contextType
+    createdById
+    lastMessageAt
+    subject
+    participants {
+      archivedAt
+      conversationId
+      joinedAt
+      lastReadAt
+    }
+  }
+}
+
+mutation MutationCreateInquiry($input: InquiryInput!, $propertyId: ID!) {
+  createInquiry(input: $input, propertyId: $propertyId) {
+    id
+    name
+    email
+    status
+    createdAt
+    updatedAt
+    message
+    phone
+    propertyId
+    source
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationCreateMarketplaceItem($input: MarketplaceItemInput!) {
+  createMarketplaceItem(input: $input) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    archivedAt
+    category
+    city
+    condition
+  }
+}
+
+mutation MutationCreateProperty($input: PropertyInput!) {
+  createProperty(input: $input) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+mutation MutationCreatePropertyBoost($input: ListingBoostInput!, $propertyId: ID!) {
+  createPropertyBoost(input: $input, propertyId: $propertyId) {
+    id
+    createdAt
+    updatedAt
+    agentId
+    expiresAt
+    propertyId
+    startsAt
+    type
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationCreatePropertyMediaUploadTarget($input: CreatePropertyMediaUploadTargetInput!, $propertyId: ID!) {
+  createPropertyMediaUploadTarget(input: $input, propertyId: $propertyId) {
+    contentType
+    expiresInSeconds
+    key
+    publicUrl
+    uploadUrl
+  }
+}
+
+mutation MutationCreateReport($input: ReportInput!, $propertyId: ID!) {
+  createReport(input: $input, propertyId: $propertyId) {
+    id
+    status
+    createdAt
+    updatedAt
+    description
+    propertyId
+    reason
+    userId
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationCreateReview($input: ReviewInput!, $propertyId: ID!) {
+  createReview(input: $input, propertyId: $propertyId) {
+    id
+    createdAt
+    updatedAt
+    comment
+    propertyId
+    rating
+    userId
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationCreateSavedSearch($input: SavedSearchInput!) {
+  createSavedSearch(input: $input) {
+    id
+    createdAt
+    updatedAt
+    alertEnabled
+    filtersJson
+    lastNotifiedAt
+    userId
+  }
+}
+
+mutation MutationCreateServiceListing($input: ServiceListingInput!) {
+  createServiceListing(input: $input) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    category
+    city
+    currency
+    description
+    provider {
+      id
+      slug
+      email
+      status
+    }
+  }
+}
+
+mutation MutationCreateServiceProvider($input: ServiceProviderInput!) {
+  createServiceProvider(input: $input) {
+    id
+    slug
+    email
+    status
+    createdAt
+    updatedAt
+    businessName
+    city
+    description
+    isVerified
+  }
+}
+
+mutation MutationCreateStaticPage($input: StaticPageInput!) {
+  createStaticPage(input: $input) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    content
+    createdById
+    publishedAt
+    summary
+  }
+}
+
+mutation MutationCreateSubscriptionPlan($input: SubscriptionPlanInput!) {
+  createSubscriptionPlan(input: $input) {
+    id
+    name
+    createdAt
+    updatedAt
+    boostCredits
+    durationDays
+    featuresJson
+    listingLimit
+    price
+  }
+}
+
+mutation MutationDeleteAdmin($id: ID!) {
+  deleteAdmin(id: $id) {
+    id
+    userId
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}
+
+mutation MutationDeleteAmenity($amenityId: ID!) {
+  deleteAmenity(amenityId: $amenityId) {
+    id
+    name
+    category
+  }
+}
+
+mutation MutationDeleteArticle($articleId: ID!) {
+  deleteArticle(articleId: $articleId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    authorId
+    authorName
+    categoryId
+    content
+    category {
+      id
+      slug
+      name
+      createdAt
+    }
+  }
+}
+
+mutation MutationDeleteAttorneyProfile($attorneyId: ID!) {
+  deleteAttorneyProfile(attorneyId: $attorneyId) {
+    id
+    slug
+    name
+    email
+    status
+    createdAt
+    updatedAt
+    city
+    createdById
+    description
+  }
+}
+
+mutation MutationDeleteMarketplaceItem($itemId: ID!) {
+  deleteMarketplaceItem(itemId: $itemId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    archivedAt
+    category
+    city
+    condition
+  }
+}
+
+mutation MutationDeleteNotification($notificationId: ID!) {
+  deleteNotification(notificationId: $notificationId)
+}
+
+mutation MutationDeleteProperty($propertyId: ID!) {
+  deleteProperty(propertyId: $propertyId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+mutation MutationDeletePropertyBoost($boostId: ID!) {
+  deletePropertyBoost(boostId: $boostId)
+}
+
+mutation MutationDeletePropertyMedia($mediaId: ID!, $propertyId: ID!) {
+  deletePropertyMedia(mediaId: $mediaId, propertyId: $propertyId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+mutation MutationDeleteRenter($id: ID!) {
+  deleteRenter(id: $id) {
+    id
+    createdAt
+    updatedAt
+    userId
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}
+
+mutation MutationDeleteReview($reviewId: ID!) {
+  deleteReview(reviewId: $reviewId) {
+    id
+    createdAt
+    updatedAt
+    comment
+    propertyId
+    rating
+    userId
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationDeleteRoommateProfile($profileId: ID!) {
+  deleteRoommateProfile(profileId: $profileId) {
+    id
+    status
+    createdAt
+    updatedAt
+    age
+    area
+    bio
+    budgetMax
+    budgetMin
+    city
+  }
+}
+
+mutation MutationDeleteSavedSearch($savedSearchId: ID!) {
+  deleteSavedSearch(savedSearchId: $savedSearchId)
+}
+
+mutation MutationDeleteServiceListing($listingId: ID!) {
+  deleteServiceListing(listingId: $listingId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    category
+    city
+    currency
+    description
+    provider {
+      id
+      slug
+      email
+      status
+    }
+  }
+}
+
+mutation MutationDeleteSubscriptionPlan($planId: ID!) {
+  deleteSubscriptionPlan(planId: $planId) {
+    id
+    name
+    createdAt
+    updatedAt
+    boostCredits
+    durationDays
+    featuresJson
+    listingLimit
+    price
+  }
+}
+
+mutation MutationDeleteUser($id: ID!) {
+  deleteUser(id: $id) {
+    id
+    name
+    email
+    role
+    emailVerified
+    image
+    admin {
+      id
+      userId
+    }
+    renter {
+      id
+      createdAt
+      updatedAt
+      userId
+    }
+  }
+}
+
+mutation MutationDuplicateProperty($propertyId: ID!) {
+  duplicateProperty(propertyId: $propertyId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+mutation MutationMarkAllNotificationsRead {
+  markAllNotificationsRead
+}
+
+mutation MutationMarkConversationRead($conversationId: ID!) {
+  markConversationRead(conversationId: $conversationId) {
+    archivedAt
+    conversationId
+    joinedAt
+    lastReadAt
+    userEmail
+    userId
+  }
+}
+
+mutation MutationMarkNotificationRead($notificationId: ID!) {
+  markNotificationRead(notificationId: $notificationId) {
+    id
+    title
+    createdAt
+    updatedAt
+    body
+    isRead
+    metadataJson
+    type
+    userId
+  }
+}
+
+mutation MutationPublishArticle($articleId: ID!) {
+  publishArticle(articleId: $articleId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    authorId
+    authorName
+    categoryId
+    content
+    category {
+      id
+      slug
+      name
+      createdAt
+    }
+  }
+}
+
+mutation MutationPublishMarketplaceItem($itemId: ID!) {
+  publishMarketplaceItem(itemId: $itemId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    archivedAt
+    category
+    city
+    condition
+  }
+}
+
+mutation MutationPublishProperty($propertyId: ID!) {
+  publishProperty(propertyId: $propertyId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+mutation MutationPublishStaticPage($pageId: ID!) {
+  publishStaticPage(pageId: $pageId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    content
+    createdById
+    publishedAt
+    summary
+  }
+}
+
+mutation MutationRejectAgentApplication($applicationId: ID!, $rejectionReason: String) {
+  rejectAgentApplication(applicationId: $applicationId, rejectionReason: $rejectionReason) {
+    id
+    status
+    createdAt
+    updatedAt
+    applicantEmail
+    applicantName
+    city
+    experience
+    licenseNumber
+    motivation
+  }
+}
+
+mutation MutationRejectPropertyForAdmin($propertyId: ID!) {
+  rejectPropertyForAdmin(propertyId: $propertyId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+mutation MutationRemoveAgencyAgent($agencyId: ID!, $agentId: ID!) {
+  removeAgencyAgent(agencyId: $agencyId, agentId: $agentId) {
+    id
+    name
+    createdAt
+    updatedAt
+    licenseNumber
+    logo
+    ownerId
+  }
+}
+
+mutation MutationReorderPropertyMedia($input: PropertyMediaReorderInput!, $propertyId: ID!) {
+  reorderPropertyMedia(input: $input, propertyId: $propertyId) {
+    id
+    createdAt
+    updatedAt
+    isPrimary
+    order
+    type
+    url
+  }
+}
+
+mutation MutationRequestAgencyAdvertising($input: AgencyAdvertisingRequestInput!) {
+  requestAgencyAdvertising(input: $input) {
+    id
+    status
+    createdAt
+    updatedAt
+    agencyName
+    budget
+    contactEmail
+    contactPhone
+    message
+    rejectionReason
+  }
+}
+
+mutation MutationRequestService($input: ServiceRequestInput!, $listingId: ID!) {
+  requestService(input: $input, listingId: $listingId) {
+    id
+    status
+    createdAt
+    updatedAt
+    listingId
+    message
+    preferredDate
+    requesterId
+    requesterName
+    listing {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationResolveReport($reportId: ID!) {
+  resolveReport(reportId: $reportId) {
+    id
+    status
+    createdAt
+    updatedAt
+    description
+    propertyId
+    reason
+    userId
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationSaveMarketplaceItem($itemId: ID!) {
+  saveMarketplaceItem(itemId: $itemId) {
+    itemId
+    savedAt
+    userId
+    item {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationSaveProperty($propertyId: ID!) {
+  saveProperty(propertyId: $propertyId) {
+    propertyId
+    savedAt
+    userId
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationSavePropertyBuyDetail($input: BuyDetailInput!, $propertyId: ID!) {
+  savePropertyBuyDetail(input: $input, propertyId: $propertyId) {
+    id
+    developerName
+    handoverDate
+    isDeveloper
+    ownerType
+    ownership
+    projectName
+    paymentPlan {
+      id
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation MutationSavePropertyBuyPaymentPlan($input: PaymentPlanInput!, $propertyId: ID!) {
+  savePropertyBuyPaymentPlan(input: $input, propertyId: $propertyId) {
+    id
+    createdAt
+    updatedAt
+    installments {
+      id
+      amount
+      dueDate
+      label
+    }
+  }
+}
+
+mutation MutationSavePropertyRentDetail($input: RentDetailInput!, $propertyId: ID!) {
+  savePropertyRentDetail(input: $input, propertyId: $propertyId) {
+    id
+    cheques
+    chillerIncluded
+    depositAmount
+    maintenanceBy
+    minLeaseTerm
+    petsAllowed
+  }
+}
+
+mutation MutationSavePropertySellDetail($input: SellDetailInput!, $propertyId: ID!) {
+  savePropertySellDetail(input: $input, propertyId: $propertyId) {
+    id
+    commissionPaidBy
+    inspectionStatus
+    isOffMarket
+    propertyId
+    sellerType
+    priceHistory {
+      id
+      changedAt
+      price
+      propertyId
+    }
+  }
+}
+
+mutation MutationSaveRoommateProfile($profileId: ID!) {
+  saveRoommateProfile(profileId: $profileId) {
+    profileId
+    savedAt
+    userId
+    profile {
+      id
+      status
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation MutationScheduleViewing($input: ScheduleViewingInput!, $inquiryId: ID!) {
+  scheduleViewing(input: $input, inquiryId: $inquiryId) {
+    id
+    status
+    createdAt
+    updatedAt
+    inquiryId
+    propertyId
+    scheduledAt
+    userId
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationSendMessage($conversationId: ID!, $input: SendMessageInput!) {
+  sendMessage(conversationId: $conversationId, input: $input) {
+    id
+    createdAt
+    updatedAt
+    body
+    conversationId
+    senderId
+    type
+  }
+}
+
+mutation MutationSetPrimaryPropertyMedia($mediaId: ID!, $propertyId: ID!) {
+  setPrimaryPropertyMedia(mediaId: $mediaId, propertyId: $propertyId) {
+    id
+    createdAt
+    updatedAt
+    isPrimary
+    order
+    type
+    url
+  }
+}
+
+mutation MutationSubmitContactMessage($input: ContactMessageInput!) {
+  submitContactMessage(input: $input) {
+    id
+    name
+    email
+    status
+    createdAt
+    updatedAt
+    message
+    phone
+    subject
+    userId
+  }
+}
+
+mutation MutationSubmitJobApplication($careerPostId: ID!, $input: JobApplicationInput!) {
+  submitJobApplication(careerPostId: $careerPostId, input: $input) {
+    id
+    email
+    createdAt
+    updatedAt
+    careerPostId
+    coverLetter
+    fullName
+    phone
+    resumeUrl
+    userId
+  }
+}
+
+mutation MutationSubscribeToPlan($input: SubscribeToPlanInput!) {
+  subscribeToPlan(input: $input) {
+    id
+    createdAt
+    updatedAt
+    agentId
+    expiresAt
+    isActive
+    planId
+    startsAt
+    plan {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation MutationToggleSavedSearchAlert($savedSearchId: ID!) {
+  toggleSavedSearchAlert(savedSearchId: $savedSearchId) {
+    id
+    createdAt
+    updatedAt
+    alertEnabled
+    filtersJson
+    lastNotifiedAt
+    userId
+  }
+}
+
+mutation MutationTrackPropertyView($propertyId: ID!) {
+  trackPropertyView(propertyId: $propertyId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+mutation MutationUnsaveMarketplaceItem($itemId: ID!) {
+  unsaveMarketplaceItem(itemId: $itemId)
+}
+
+mutation MutationUnsaveProperty($propertyId: ID!) {
+  unsaveProperty(propertyId: $propertyId)
+}
+
+mutation MutationUnsaveRoommateProfile($profileId: ID!) {
+  unsaveRoommateProfile(profileId: $profileId)
+}
+
+mutation MutationUpdateAdmin($id: ID!, $input: AdminUpdateInput!) {
+  updateAdmin(id: $id, input: $input) {
+    id
+    userId
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}
+
+mutation MutationUpdateAgency($agencyId: ID!, $input: AgencyUpdateInput!) {
+  updateAgency(agencyId: $agencyId, input: $input) {
+    id
+    name
+    createdAt
+    updatedAt
+    licenseNumber
+    logo
+    ownerId
+  }
+}
+
+mutation MutationUpdateAgencyAdvertisingRequestStatus($input: AgencyAdvertisingRequestStatusInput!, $requestId: ID!) {
+  updateAgencyAdvertisingRequestStatus(input: $input, requestId: $requestId) {
+    id
+    status
+    createdAt
+    updatedAt
+    agencyName
+    budget
+    contactEmail
+    contactPhone
+    message
+    rejectionReason
+  }
+}
+
+mutation MutationUpdateAmenity($amenityId: ID!, $input: AmenityUpdateInput!) {
+  updateAmenity(amenityId: $amenityId, input: $input) {
+    id
+    name
+    category
+  }
+}
+
+mutation MutationUpdateArticle($articleId: ID!, $input: ArticleUpdateInput!) {
+  updateArticle(articleId: $articleId, input: $input) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    authorId
+    authorName
+    categoryId
+    content
+    category {
+      id
+      slug
+      name
+      createdAt
+    }
+  }
+}
+
+mutation MutationUpdateAttorneyProfile($attorneyId: ID!, $input: AttorneyProfileUpdateInput!) {
+  updateAttorneyProfile(attorneyId: $attorneyId, input: $input) {
+    id
+    slug
+    name
+    email
+    status
+    createdAt
+    updatedAt
+    city
+    createdById
+    description
+  }
+}
+
+mutation MutationUpdateCareerPost($careerPostId: ID!, $input: CareerPostUpdateInput!) {
+  updateCareerPost(careerPostId: $careerPostId, input: $input) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    createdById
+    description
+    employmentType
+    location
+  }
+}
+
+mutation MutationUpdateInquiryStatus($input: InquiryStatusUpdateInput!, $inquiryId: ID!) {
+  updateInquiryStatus(input: $input, inquiryId: $inquiryId) {
+    id
+    name
+    email
+    status
+    createdAt
+    updatedAt
+    message
+    phone
+    propertyId
+    source
+    property {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationUpdateMarketplaceItem($input: MarketplaceItemUpdateInput!, $itemId: ID!) {
+  updateMarketplaceItem(input: $input, itemId: $itemId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    archivedAt
+    category
+    city
+    condition
+  }
+}
+
+mutation MutationUpdateProperty($input: PropertyUpdateInput!, $propertyId: ID!) {
+  updateProperty(input: $input, propertyId: $propertyId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    availableFrom
+    bathrooms
+    bedrooms
+    builtUpArea
+    amenities {
+      amenityId
+      propertyId
+    }
+    buyDetail {
+      id
+      developerName
+      handoverDate
+      isDeveloper
+    }
+    documents {
+      id
+      label
+      type
+      url
+    }
+  }
+}
+
+mutation MutationUpdateRenter($id: ID!, $input: RenterUpdateInput!) {
+  updateRenter(id: $id, input: $input) {
+    id
+    createdAt
+    updatedAt
+    userId
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}
+
+mutation MutationUpdateServiceListing($input: ServiceListingUpdateInput!, $listingId: ID!) {
+  updateServiceListing(input: $input, listingId: $listingId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    category
+    city
+    currency
+    description
+    provider {
+      id
+      slug
+      email
+      status
+    }
+  }
+}
+
+mutation MutationUpdateServiceProvider($input: ServiceProviderUpdateInput!, $providerId: ID!) {
+  updateServiceProvider(input: $input, providerId: $providerId) {
+    id
+    slug
+    email
+    status
+    createdAt
+    updatedAt
+    businessName
+    city
+    description
+    isVerified
+  }
+}
+
+mutation MutationUpdateServiceRequestStatus($input: ServiceRequestStatusInput!, $requestId: ID!) {
+  updateServiceRequestStatus(input: $input, requestId: $requestId) {
+    id
+    status
+    createdAt
+    updatedAt
+    listingId
+    message
+    preferredDate
+    requesterId
+    requesterName
+    listing {
+      id
+      slug
+      title
+      status
+    }
+  }
+}
+
+mutation MutationUpdateStaticPage($input: StaticPageUpdateInput!, $pageId: ID!) {
+  updateStaticPage(input: $input, pageId: $pageId) {
+    id
+    slug
+    title
+    status
+    createdAt
+    updatedAt
+    content
+    createdById
+    publishedAt
+    summary
+  }
+}
+
+mutation MutationUpdateSubscriptionPlan($input: SubscriptionPlanUpdateInput!, $planId: ID!) {
+  updateSubscriptionPlan(input: $input, planId: $planId) {
+    id
+    name
+    createdAt
+    updatedAt
+    boostCredits
+    durationDays
+    featuresJson
+    listingLimit
+    price
+  }
+}
+
+mutation MutationUpdateUser($id: ID!, $input: UserUpdateInput!) {
+  updateUser(id: $id, input: $input) {
+    id
+    name
+    email
+    role
+    emailVerified
+    image
+    admin {
+      id
+      userId
+    }
+    renter {
+      id
+      createdAt
+      updatedAt
+      userId
+    }
+  }
+}
+
+mutation MutationUpsertBuyDetail($input: BuyDetailInput!, $propertyId: ID!) {
+  upsertBuyDetail(input: $input, propertyId: $propertyId) {
+    id
+    developerName
+    handoverDate
+    isDeveloper
+    ownerType
+    ownership
+    projectName
+    paymentPlan {
+      id
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation MutationUpsertPropertyPaymentPlan($input: PaymentPlanInput!, $propertyId: ID!) {
+  upsertPropertyPaymentPlan(input: $input, propertyId: $propertyId) {
+    id
+    createdAt
+    updatedAt
+    installments {
+      id
+      amount
+      dueDate
+      label
+    }
+  }
+}
+
+mutation MutationUpsertRentDetail($input: RentDetailInput!, $propertyId: ID!) {
+  upsertRentDetail(input: $input, propertyId: $propertyId) {
+    id
+    cheques
+    chillerIncluded
+    depositAmount
+    maintenanceBy
+    minLeaseTerm
+    petsAllowed
+  }
+}
+
+mutation MutationUpsertRoommateProfile($input: RoommateProfileInput!) {
+  upsertRoommateProfile(input: $input) {
+    id
+    status
+    createdAt
+    updatedAt
+    age
+    area
+    bio
+    budgetMax
+    budgetMin
+    city
+  }
+}
+
+mutation MutationUpsertSellDetail($input: SellDetailInput!, $propertyId: ID!) {
+  upsertSellDetail(input: $input, propertyId: $propertyId) {
+    id
+    commissionPaidBy
+    inspectionStatus
+    isOffMarket
+    propertyId
+    sellerType
+    priceHistory {
+      id
+      changedAt
+      price
+      propertyId
+    }
+  }
+}

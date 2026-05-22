@@ -1,4 +1,4 @@
-import { Prisma, Property, SavedProperty, SavedSearch } from "@kasistay/db";
+import { Prisma, Property, SavedProperty, SavedSearch } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { propertyInclude } from "../../properties/queries";
 

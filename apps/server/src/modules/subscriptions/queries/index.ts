@@ -1,4 +1,4 @@
-import type { AgentSubscription, Prisma, SubscriptionPlan } from "@kasistay/db";
+import type { AgentSubscription, Prisma, SubscriptionPlan } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { unauthorized } from "../../../utils/errors";
 

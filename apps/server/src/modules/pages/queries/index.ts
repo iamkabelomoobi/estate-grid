@@ -1,4 +1,4 @@
-import { Prisma, StaticPageStatus, StaticPageType } from "@kasistay/db";
+import { Prisma, StaticPageStatus, StaticPageType } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { notFound } from "../../../utils/errors";
 import { parseEnum } from "../../../utils/parse-enum";

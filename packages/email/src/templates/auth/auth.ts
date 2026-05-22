@@ -2,6 +2,7 @@ import Mailgen from "mailgen";
 import { getMailgenInstance } from "../../libs";
 import {
   EmailPayload,
+  EmailChangeConfirmationTemplateParams,
   EmailVerificationTemplateParams,
   PasswordResetLinkTemplateParams,
   PasswordResetOtpTemplateParams,
@@ -175,6 +176,42 @@ class AuthenticationTemplates {
     return this.buildPayload(
       email,
       `Verify your ${appName} account`,
+      template,
+      this.getMailgen(),
+    );
+  };
+
+  emailChangeConfirmationTemplate = (
+    params: EmailChangeConfirmationTemplateParams,
+  ): EmailPayload => {
+    const { email, confirmationUrl, appName } = params;
+
+    const template: Mailgen.Content = {
+      body: {
+        greeting: "Hello",
+        intro: [
+          `We received a request to change the email address on your ${appName} account.`,
+          "Please confirm this new email address to complete the change.",
+        ],
+        action: {
+          instructions:
+            "Click the button below to confirm this email address.",
+          button: {
+            color: "#4F46E5",
+            text: "Confirm Email Change",
+            link: confirmationUrl,
+          },
+        },
+        outro: [
+          "If you did not request this change, you can safely ignore this message.",
+        ],
+        signature: "Regards",
+      },
+    };
+
+    return this.buildPayload(
+      email,
+      `Confirm your ${appName} email change`,
       template,
       this.getMailgen(),
     );

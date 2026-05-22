@@ -11,7 +11,7 @@ import type {
   PropertyMedia,
   RentDetail,
   SellDetail,
-} from "@kasistay/db";
+} from "@estate-grid/db";
 import { builder } from "../../../app/builder";
 import {
   archiveProperty,

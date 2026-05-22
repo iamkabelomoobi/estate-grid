@@ -5,12 +5,12 @@ const IS_PREVIEW = process.env.APP_VARIANT === "preview";
 
 const getUniqueIdentifier = () => {
   if (IS_DEV) {
-    return "com.kasistay.dev";
+    return "com.estate-grid.dev";
   }
   if (IS_PREVIEW) {
-    return "com.kasistay.preview";
+    return "com.estate-grid.preview";
   }
-  return "com.kasistay";
+  return "com.estate-grid";
 };
 
 const getAppName = () => {
@@ -27,11 +27,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
 
   name: getAppName(),
-  slug: "kasistay",
+  slug: "estate-grid",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/images/icon.png",
-  scheme: "kasistay",
+  scheme: "estate-grid",
   userInterfaceStyle: "automatic",
   newArchEnabled: true,
 

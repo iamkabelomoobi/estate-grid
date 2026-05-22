@@ -1,4 +1,4 @@
-import { PropertyStatus } from "@kasistay/db";
+import { PropertyStatus } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { notFound, unauthorized } from "../../../utils/errors";
 

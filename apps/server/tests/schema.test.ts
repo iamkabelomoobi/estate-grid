@@ -3,13 +3,13 @@ import { test } from "node:test";
 import { printSchema } from "graphql";
 
 process.env.DATABASE_URL ??=
-  "postgresql://kasistay:kasistay@127.0.0.1:5432/kasistay_dev";
+  "postgresql://estate-grid:estate-grid@127.0.0.1:5432/estate-grid_dev";
 
 const expectOperation = (schemaText: string, operation: string) => {
   assert.match(schemaText, new RegExp(`\\b${operation}\\b`));
 };
 
-test("schema exposes the Kasi Stay backend operations", async () => {
+test("schema exposes the Estate Grid backend operations", async () => {
   const { schema } = await import("../src/app/index.ts");
   const schemaText = printSchema(schema);
 

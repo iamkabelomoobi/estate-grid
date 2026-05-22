@@ -1,4 +1,4 @@
-import { StaticPageStatus, StaticPageType } from "@kasistay/db";
+import { StaticPageStatus, StaticPageType } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { badInput, notFound } from "../../../utils/errors";
 import { parseEnum } from "../../../utils/parse-enum";

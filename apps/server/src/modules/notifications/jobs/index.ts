@@ -1,4 +1,4 @@
-import type { EmailPayload } from "@kasistay/email";
+import type { EmailPayload } from "@estate-grid/email";
 import { createJobEnqueuer } from "../../../infra/queue";
 
 export const NOTIFICATION_EMAIL_JOB = "notifications.email" as const;

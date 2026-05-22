@@ -1,4 +1,4 @@
-import type { ListingBoost, Prisma, Property } from "@kasistay/db";
+import type { ListingBoost, Prisma, Property } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { notFound } from "../../../utils/errors";
 import { propertyInclude } from "../../properties/queries";

@@ -1,4 +1,5 @@
 import { builder } from "../../../app/builder";
+import { badInput } from "../../../utils/errors";
 import { getMyProfile, getRenter, getRenters } from "../queries";
 import { deleteRenter, updateRenter } from "../mutations";
 import { assertRenterAccess } from "../../../lib/assertRenterAccess";
@@ -67,11 +68,16 @@ builder.mutationField("updateRenter", (t) =>
       const id = String(args.id);
       await assertRenterAccess(id, ctx);
 
+      if (args.input.email !== undefined) {
+        badInput(
+          "Email changes must use the authenticated email-change flow so the new address can be verified.",
+        );
+      }
+
       return updateRenter(
         id,
         {
           ...(args.input.name != null && { name: args.input.name }),
-          ...(args.input.email != null && { email: args.input.email }),
           ...(args.input.image != null && { image: args.input.image }),
         },
         ctx,

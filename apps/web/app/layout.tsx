@@ -9,7 +9,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "kasistay",
+  title: "estate-grid",
   description: "Discover, book, and pay for your perfect stay.",
 };
 

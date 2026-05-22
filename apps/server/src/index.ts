@@ -1,5 +1,5 @@
 import "./load-env";
-import { disconnectDatabase } from "@kasistay/db";
+import { disconnectDatabase } from "@estate-grid/db";
 import { pathToFileURL } from "node:url";
 import { createServerRuntime } from "./app/server";
 import { seedAdmin } from "./infra";

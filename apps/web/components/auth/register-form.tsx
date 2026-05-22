@@ -243,7 +243,7 @@ export const RegisterForm = () => {
               onCheckedChange={(checked) => setAcceptedTerms(checked === true)}
             />
             <span>
-              I agree to kasistay&apos;s terms and want secure booking updates.
+              I agree to estate-grid&apos;s terms and want secure booking updates.
             </span>
           </label>
           {errors.terms ? (

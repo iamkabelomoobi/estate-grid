@@ -1,4 +1,4 @@
-import { prisma, UserRole } from "@kasistay/db";
+import { prisma, UserRole } from "@estate-grid/db";
 
 export type AuthHookUser = {
   id: string;

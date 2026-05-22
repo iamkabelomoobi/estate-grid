@@ -2,7 +2,7 @@ import {
   GenderPreference,
   Prisma,
   RoommateProfileStatus,
-} from "@kasistay/db";
+} from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { notFound } from "../../../utils/errors";
 import { parseEnum } from "../../../utils/parse-enum";

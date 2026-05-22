@@ -13,8 +13,8 @@ import {
   PropertyType,
   SellerType,
   TenantPreference,
-} from "@kasistay/db";
-import type { Prisma } from "@kasistay/db";
+} from "@estate-grid/db";
+import type { Prisma } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { cache, cacheKeys, config } from "../../../infra";
 import { enqueuePropertySearchSync } from "../../search/jobs";

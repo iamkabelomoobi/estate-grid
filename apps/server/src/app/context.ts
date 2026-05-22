@@ -1,7 +1,7 @@
-import { auth, getBetterAuthHeaders } from "@kasistay/auth";
-import { prisma } from "@kasistay/db";
-import { UserRole } from "@kasistay/db";
-import { logger } from "@kasistay/logger";
+import { auth, getBetterAuthHeaders } from "@estate-grid/auth";
+import { prisma } from "@estate-grid/db";
+import { UserRole } from "@estate-grid/db";
+import { logger } from "@estate-grid/logger";
 import { Request } from "express";
 
 type SessionUser = {
@@ -19,6 +19,12 @@ type Session = {
     expiresAt: Date;
     token: string;
   };
+};
+
+const validUserRoles = new Set<UserRole>(Object.values(UserRole));
+
+const toUserRole = (role: unknown): UserRole | null => {
+  return validUserRoles.has(role as UserRole) ? (role as UserRole) : null;
 };
 
 export class Context {
@@ -39,8 +45,8 @@ export class Context {
     this.ipAddress = _ipAddress;
   }
 
-  get role(): UserRole {
-    return (this.session?.user?.role as UserRole) ?? UserRole.RENTER;
+  get role(): UserRole | null {
+    return toUserRole(this.session?.user?.role);
   }
 
   get isAuthenticated(): boolean {
@@ -67,6 +73,12 @@ export class Context {
     return this.role === UserRole.RENTER;
   }
 
+  hasRole(...roles: UserRole[]): boolean {
+    return (
+      this.isAuthenticated && this.role !== null && roles.includes(this.role)
+    );
+  }
+
   assertAuth(): SessionUser {
     if (!this.session) {
       throw new Error("Unauthorized: you must be logged in");
@@ -76,7 +88,7 @@ export class Context {
 
   assertAdmin(): SessionUser {
     const user = this.assertAuth();
-    if (!this.isAdmin) {
+    if (!this.hasRole(UserRole.ADMIN)) {
       throw new Error("Forbidden: admin access required");
     }
     return user;
@@ -84,7 +96,7 @@ export class Context {
 
   assertRenter(): SessionUser {
     const user = this.assertAuth();
-    if (!this.isRenter) {
+    if (!this.hasRole(UserRole.RENTER)) {
       throw new Error("Forbidden: renter access required");
     }
     return user;
@@ -92,7 +104,7 @@ export class Context {
 
   assertAgent(): SessionUser {
     const user = this.assertAuth();
-    if (!this.isAgent) {
+    if (!this.hasRole(UserRole.AGENT)) {
       throw new Error("Forbidden: agent access required");
     }
     return user;
@@ -100,7 +112,7 @@ export class Context {
 
   assertOwner(): SessionUser {
     const user = this.assertAuth();
-    if (!this.isOwner) {
+    if (!this.hasRole(UserRole.OWNER)) {
       throw new Error("Forbidden: owner access required");
     }
     return user;
@@ -108,8 +120,16 @@ export class Context {
 
   assertBuyer(): SessionUser {
     const user = this.assertAuth();
-    if (!this.isBuyer) {
+    if (!this.hasRole(UserRole.BUYER)) {
       throw new Error("Forbidden: buyer access required");
+    }
+    return user;
+  }
+
+  assertAnyRole(roles: UserRole[], message = "Forbidden"): SessionUser {
+    const user = this.assertAuth();
+    if (!this.hasRole(...roles)) {
+      throw new Error(message);
     }
     return user;
   }
@@ -122,9 +142,9 @@ export class Context {
     const forwardedForHeader = req.headers["x-forwarded-for"];
     const forwardedFor =
       typeof forwardedForHeader === "string"
-        ? forwardedForHeader.split(",")[0]?.trim() ?? null
+        ? (forwardedForHeader.split(",")[0]?.trim() ?? null)
         : Array.isArray(forwardedForHeader)
-          ? forwardedForHeader[0]?.trim() ?? null
+          ? (forwardedForHeader[0]?.trim() ?? null)
           : null;
     const ipAddress = forwardedFor ?? req.ip ?? null;
 

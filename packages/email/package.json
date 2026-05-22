@@ -1,5 +1,5 @@
 {
-  "name": "@kasistay/email",
+  "name": "@estate-grid/email",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
@@ -20,8 +20,8 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "@kasistay/db": "*",
-    "@kasistay/logger": "^1.0.0",
+    "@estate-grid/db": "*",
+    "@estate-grid/logger": "^1.0.0",
     "mailgen": "^2.0.28",
     "nodemailer": "^8.0.5",
     "resend": "^4.0.0"

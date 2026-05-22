@@ -11,7 +11,7 @@ test("openapi document exposes docs, auth, and graphql endpoints", () => {
   });
 
   assert.equal(document.openapi, "3.1.0");
-  assert.equal(document.info.title, "Kasi Stay Server API");
+  assert.equal(document.info.title, "Estate Grid Server API");
   assert.equal(document.servers[0]?.url, "http://localhost:4100");
   assert.ok(document.paths["/docs"]);
   assert.ok(document.paths["/openapi.json"]);

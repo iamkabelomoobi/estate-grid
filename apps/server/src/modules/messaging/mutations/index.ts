@@ -1,7 +1,7 @@
 import {
   ConversationContextType,
   MessageType,
-} from "@kasistay/db";
+} from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { badInput, notFound, unauthorized } from "../../../utils/errors";
 import { notifyUsers } from "../../../utils/notify-users";

@@ -20,7 +20,7 @@ RUN npm ci
 
 FROM deps AS builder
 COPY . .
-RUN npx turbo run build --filter=web --filter=@kasistay/server
+RUN npx turbo run build --filter=web --filter=@estate-grid/server
 
 FROM builder AS prod-deps
 RUN npm prune --omit=dev

@@ -32,7 +32,7 @@ export const config = {
       port: parseInt(process.env.MAILHOG_PORT || "1025", 10),
       secure: process.env.MAILHOG_SECURE === "true",
       from:
-        process.env.MAILHOG_FROM || "kasistay <no-reply@kasistay.local>",
+        process.env.MAILHOG_FROM || "estate-grid <no-reply@estate-grid.local>",
       auth:
         process.env.MAILHOG_USER && process.env.MAILHOG_PASS
           ? {
@@ -49,7 +49,7 @@ export const config = {
   queue: {
     driver:
       process.env.QUEUE_DRIVER === "bullmq" ? "bullmq" : "memory",
-    name: process.env.QUEUE_NAME || "kasistay-server",
+    name: process.env.QUEUE_NAME || "estate-grid-server",
     retry: {
       attempts: parseInt(process.env.QUEUE_RETRY_ATTEMPTS || "3", 10),
       backoff: {
@@ -84,7 +84,7 @@ export const config = {
   redis: {
     enabled: process.env.REDIS_ENABLED !== "false",
     url: process.env.REDIS_URL?.trim() || "",
-    keyPrefix: process.env.REDIS_KEY_PREFIX?.trim() || "kasistay:",
+    keyPrefix: process.env.REDIS_KEY_PREFIX?.trim() || "estate-grid:",
     connectTimeoutMs: parseInt(
       process.env.REDIS_CONNECT_TIMEOUT_MS || "10000",
       10,
@@ -106,7 +106,7 @@ export const config = {
       "",
     username: process.env.ELASTICSEARCH_USERNAME?.trim() || "",
     password: process.env.ELASTICSEARCH_PASSWORD?.trim() || "",
-    indexPrefix: process.env.ELASTICSEARCH_INDEX_PREFIX?.trim() || "kasistay-",
+    indexPrefix: process.env.ELASTICSEARCH_INDEX_PREFIX?.trim() || "estate-grid-",
     propertyIndex: process.env.ELASTICSEARCH_PROPERTY_INDEX || "properties",
     requestTimeoutMs: parseInt(
       process.env.ELASTICSEARCH_REQUEST_TIMEOUT_MS || "10000",

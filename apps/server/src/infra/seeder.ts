@@ -1,5 +1,5 @@
-import { auth, createRoleRecord } from "@kasistay/auth";
-import { prisma, UserRole } from "@kasistay/db";
+import { auth, createRoleRecord } from "@estate-grid/auth";
+import { prisma, UserRole } from "@estate-grid/db";
 import { pathToFileURL } from "node:url";
 
 export const seedAdmin = async () => {

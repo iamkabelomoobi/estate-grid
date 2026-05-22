@@ -1,4 +1,4 @@
-import { InquiryStatus, Prisma, ViewingStatus } from "@kasistay/db";
+import { InquiryStatus, Prisma, ViewingStatus } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { enqueueNotificationEmail } from "../../notifications/jobs";
 import { badInput, notFound, unauthorized } from "../../../utils/errors";

@@ -1,4 +1,4 @@
-import type { Notification } from "@kasistay/db";
+import type { Notification } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 
 export type NotificationShape = Notification;

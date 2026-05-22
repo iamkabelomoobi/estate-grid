@@ -1,4 +1,4 @@
-import { ReportReason, ReportStatus } from "@kasistay/db";
+import { ReportReason, ReportStatus } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { badInput, notFound } from "../../../utils/errors";
 import { reportInclude } from "../queries";

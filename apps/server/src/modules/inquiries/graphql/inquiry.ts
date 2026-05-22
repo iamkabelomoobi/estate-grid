@@ -1,4 +1,4 @@
-import type { Inquiry, Property } from "@kasistay/db";
+import type { Inquiry, Property } from "@estate-grid/db";
 import { builder } from "../../../app/builder";
 import { PropertyRef } from "../../properties/graphql/property";
 import { createInquiry, updateInquiryStatus } from "../mutations";

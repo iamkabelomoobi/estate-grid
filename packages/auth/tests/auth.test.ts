@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { prisma, UserRole } from "@kasistay/db";
+import { prisma, UserRole } from "@estate-grid/db";
 import { createRoleRecord } from "../src/utils/create-role-record.ts";
 
 test("createRoleRecord defaults invalid roles to renter and provisions renter state", async () => {

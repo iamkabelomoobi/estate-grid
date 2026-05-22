@@ -1,4 +1,4 @@
-import { AmenityCategory } from "@kasistay/db";
+import { AmenityCategory } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import { badInput, notFound, unauthorized } from "../../../utils/errors";
 

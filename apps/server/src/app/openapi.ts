@@ -1,4 +1,4 @@
-import { config } from "../infra";
+import { config } from "../infra/config";
 
 type OpenApiDocumentOptions = {
   serverUrl?: string;
@@ -25,10 +25,10 @@ export const createOpenApiDocument = (
   return {
     openapi: "3.1.0",
     info: {
-      title: "Kasi Stay Server API",
+      title: "Estate Grid Server API",
       version: "1.0.0",
       description: [
-        "OpenAPI reference for the Kasi Stay HTTP surface.",
+        "OpenAPI reference for the Estate Grid HTTP surface.",
         "",
         "The platform is primarily GraphQL-first. Swagger documents the shared transport endpoints, authentication flows, and the GraphQL entrypoint.",
         "",
@@ -185,9 +185,10 @@ export const createOpenApiDocument = (
       "/docs": {
         get: {
           tags: ["Documentation"],
+          operationId: "renderDocs",
           summary: "Render Swagger UI",
           description:
-            "Serves the interactive Swagger/OpenAPI browser for the Kasi Stay server.",
+            "Serves the interactive Swagger/OpenAPI browser for the Estate Grid server.",
           responses: {
             "200": {
               description: "Swagger UI HTML",
@@ -205,6 +206,7 @@ export const createOpenApiDocument = (
       "/openapi.json": {
         get: {
           tags: ["Documentation"],
+          operationId: "getOpenApiDocument",
           summary: "Fetch the OpenAPI document",
           responses: {
             "200": {
@@ -224,6 +226,7 @@ export const createOpenApiDocument = (
       "/api/auth/sign-up/email": {
         post: {
           tags: ["Authentication"],
+          operationId: "signUpWithEmail",
           summary: "Register a user with email and password",
           requestBody: {
             required: true,
@@ -249,6 +252,7 @@ export const createOpenApiDocument = (
       "/api/auth/sign-in/email": {
         post: {
           tags: ["Authentication"],
+          operationId: "signInWithEmail",
           summary: "Sign in with email and password",
           requestBody: {
             required: true,
@@ -274,6 +278,7 @@ export const createOpenApiDocument = (
       "/api/auth/sign-out": {
         post: {
           tags: ["Authentication"],
+          operationId: "signOut",
           summary: "Sign out the current user",
           security: [{ sessionCookie: [] }],
           responses: {
@@ -291,6 +296,7 @@ export const createOpenApiDocument = (
       "/api/auth/get-session": {
         get: {
           tags: ["Authentication"],
+          operationId: "getSession",
           summary: "Get the current authenticated session",
           security: [{ sessionCookie: [] }],
           responses: {
@@ -313,9 +319,10 @@ export const createOpenApiDocument = (
       "/graphql": {
         post: {
           tags: ["GraphQL"],
+          operationId: "executeGraphQL",
           summary: "Execute GraphQL operations",
           description: [
-            "Primary API transport for Kasi Stay.",
+            "Primary API transport for Estate Grid.",
             "",
             "Use this endpoint for property listings, saved searches, alerts, reviews, messaging, marketplace, roommates, services, CMS content, careers, and professional onboarding.",
             "",
@@ -372,7 +379,7 @@ export const renderSwaggerUiHtml = (): string => `<!DOCTYPE html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Kasi Stay API Docs</title>
+    <title>Estate Grid API Docs</title>
     <link
       rel="stylesheet"
       href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css"

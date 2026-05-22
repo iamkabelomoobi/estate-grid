@@ -41,7 +41,7 @@ const BrandMark = () => (
       </svg>
     </span>
     <span className="text-2xl font-black tracking-tight text-[#050505] transition group-hover:text-black/70">
-      kasistay<span className="text-black/45">.</span>
+      estate-grid<span className="text-black/45">.</span>
     </span>
   </Link>
 );
@@ -96,7 +96,7 @@ export const AuthShell = ({ children }: AuthShellProps) => {
         <aside className="relative hidden min-h-screen p-6 lg:block">
           <div className="relative h-full min-h-[calc(100vh-3rem)] overflow-hidden rounded-[2.2rem] bg-[#050505] [border-bottom-right-radius:6rem] [border-top-left-radius:6rem]">
             <Image
-              alt="kasistay property booking background"
+              alt="estate-grid property booking background"
               className="object-cover"
               fill
               priority

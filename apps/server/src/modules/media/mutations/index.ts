@@ -1,4 +1,4 @@
-import { Prisma, PropertyMediaType } from "@kasistay/db";
+import { Prisma, PropertyMediaType } from "@estate-grid/db";
 import { Context } from "../../../app/context";
 import {
   config,

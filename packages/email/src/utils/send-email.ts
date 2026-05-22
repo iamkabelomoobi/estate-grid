@@ -2,7 +2,7 @@ import "dotenv/config";
 import nodemailer, { type Transporter } from "nodemailer";
 import { Resend } from "resend";
 import { EmailPayload } from "../templates/auth/auth-types";
-import { logger } from "@kasistay/logger";
+import { logger } from "@estate-grid/logger";
 
 let resendClient: Resend | null = null;
 let nodemailerClient: Transporter | null = null;
@@ -31,7 +31,7 @@ const extractEmailAddress = (value: string): string | null => {
 
 const normalizeEnvelopeSender = (
   value: string,
-  fallbackDomain = "kasistay.local",
+  fallbackDomain = "estate-grid.local",
 ): string => {
   const extracted = extractEmailAddress(value);
   if (extracted) return extracted;
@@ -117,7 +117,7 @@ export const sendEmail = async (payload: EmailPayload): Promise<void> => {
   if (useMailhog) {
     const client = getNodemailerClient();
     const configuredFrom =
-      process.env.MAILHOG_FROM?.trim() || "kasistay <no-reply@kasistay.local>";
+      process.env.MAILHOG_FROM?.trim() || "estate-grid <no-reply@estate-grid.local>";
     const envelopeFrom = normalizeEnvelopeSender(configuredFrom);
 
     if (!extractEmailAddress(configuredFrom)) {
