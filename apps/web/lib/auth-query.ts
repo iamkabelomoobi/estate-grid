@@ -1,164 +1,201 @@
-"use client"
+"use client";
 
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import {
+  getSession,
+  requestPasswordReset,
+  resetPassword,
+  signInWithEmail,
+  signOut,
+  signUpWithEmail,
+} from "@estate-grid/client";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { authClient } from "@/lib/auth-client"
+import { configureEstateGridSdk } from "@/lib/sdk";
 
-export const authSessionQueryKey = ["auth", "session"] as const
+export const authSessionQueryKey = ["auth", "session"] as const;
 
-type AuthErrorLike = {
-  message?: string
-  statusText?: string
-}
+type SdkResponse<T> = {
+  data: T;
+  status: number;
+};
 
-type AuthResponse<T> = {
-  data: T | null
-  error: AuthErrorLike | null
-}
+type SdkErrorPayload = {
+  error?: string;
+  message?: string;
+  statusText?: string;
+};
 
 type SignInInput = {
-  callbackURL?: string
-  email: string
-  password: string
-  rememberMe?: boolean
-}
+  callbackURL?: string;
+  email: string;
+  password: string;
+  rememberMe?: boolean;
+};
 
 type SignUpInput = {
-  callbackURL?: string
-  email: string
-  name: string
-  password: string
-}
+  callbackURL?: string;
+  email: string;
+  name: string;
+  password: string;
+};
 
 type RequestPasswordResetInput = {
-  email: string
-  redirectTo: string
-}
+  email: string;
+  redirectTo: string;
+};
 
 type ResetPasswordInput = {
-  newPassword: string
-  token: string
-}
+  newPassword: string;
+  token: string;
+};
 
-const getAuthErrorMessage = (
-  error: AuthErrorLike | null | undefined,
-  fallback: string,
-) => error?.message || error?.statusText || fallback
+const authRequestOptions = {
+  credentials: "include",
+} satisfies RequestInit;
 
-const requireAuthData = <T>(
-  response: AuthResponse<T>,
-  fallback: string,
-) => {
-  if (response.error) {
-    throw new Error(getAuthErrorMessage(response.error, fallback))
+const getSdkErrorMessage = (payload: unknown, fallback: string): string => {
+  if (payload && typeof payload === "object") {
+    const errorPayload = payload as SdkErrorPayload;
+    return (
+      errorPayload.message ||
+      errorPayload.statusText ||
+      errorPayload.error ||
+      fallback
+    );
   }
 
-  if (response.data === null) {
-    throw new Error(fallback)
+  return fallback;
+};
+
+const requireSdkSuccess = <T>(
+  response: SdkResponse<T>,
+  fallback: string,
+): T => {
+  if (response.status < 200 || response.status >= 300) {
+    throw new Error(getSdkErrorMessage(response.data, fallback));
   }
 
-  return response.data
-}
+  return response.data;
+};
 
 export const useAuthSessionQuery = () =>
   useQuery({
     queryFn: async () => {
-      const response = await authClient.getSession()
+      configureEstateGridSdk();
 
-      if (response.error) {
-        throw new Error(
-          getAuthErrorMessage(response.error, "Could not load your session."),
-        )
-      }
-
-      return response.data ?? null
+      return requireSdkSuccess(
+        await getSession(authRequestOptions),
+        "Could not load your session.",
+      );
     },
     queryKey: authSessionQueryKey,
-  })
+  });
 
 export const useSignInMutation = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({
-      callbackURL,
-      email,
-      password,
-      rememberMe,
-    }: SignInInput) =>
-      requireAuthData(
-        await authClient.signIn.email({
-          callbackURL,
-          email,
-          password,
-          rememberMe,
-        }),
+    mutationFn: async ({ email, password }: SignInInput) => {
+      configureEstateGridSdk();
+
+      return requireSdkSuccess(
+        await signInWithEmail(
+          {
+            email,
+            password,
+          },
+          authRequestOptions,
+        ),
         "Could not sign you in.",
-      ),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: authSessionQueryKey })
+      );
     },
-  })
-}
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: authSessionQueryKey });
+    },
+  });
+};
 
 export const useSignUpMutation = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ callbackURL, email, name, password }: SignUpInput) =>
-      requireAuthData(
-        await authClient.signUp.email({
-          callbackURL,
-          email,
-          name,
-          password,
-        }),
+    mutationFn: async ({ email, name, password }: SignUpInput) => {
+      configureEstateGridSdk();
+
+      return requireSdkSuccess(
+        await signUpWithEmail(
+          {
+            email,
+            name,
+            password,
+          },
+          authRequestOptions,
+        ),
         "Could not create your account.",
-      ),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: authSessionQueryKey })
+      );
     },
-  })
-}
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: authSessionQueryKey });
+    },
+  });
+};
 
 export const useRequestPasswordResetMutation = () =>
   useMutation({
-    mutationFn: async ({ email, redirectTo }: RequestPasswordResetInput) =>
-      requireAuthData(
-        await authClient.requestPasswordReset({
-          email,
-          redirectTo,
-        }),
+    mutationFn: async ({ email, redirectTo }: RequestPasswordResetInput) => {
+      configureEstateGridSdk();
+
+      return requireSdkSuccess(
+        await requestPasswordReset(
+          {
+            email,
+            redirectTo,
+          },
+          authRequestOptions,
+        ),
         "Could not send reset instructions.",
-      ),
-  })
+      );
+    },
+  });
 
 export const useResetPasswordMutation = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ newPassword, token }: ResetPasswordInput) =>
-      requireAuthData(
-        await authClient.resetPassword({
-          newPassword,
-          token,
-        }),
+    mutationFn: async ({ newPassword, token }: ResetPasswordInput) => {
+      configureEstateGridSdk();
+
+      return requireSdkSuccess(
+        await resetPassword(
+          {
+            newPassword,
+            token,
+          },
+          authRequestOptions,
+        ),
         "Could not update your password.",
-      ),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: authSessionQueryKey })
+      );
     },
-  })
-}
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: authSessionQueryKey });
+    },
+  });
+};
 
 export const useSignOutMutation = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async () =>
-      requireAuthData(await authClient.signOut(), "Could not sign you out."),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: authSessionQueryKey })
+    mutationFn: async () => {
+      configureEstateGridSdk();
+
+      return requireSdkSuccess(
+        await signOut(authRequestOptions),
+        "Could not sign you out.",
+      );
     },
-  })
-}
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: authSessionQueryKey });
+    },
+  });
+};

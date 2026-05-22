@@ -20,6 +20,7 @@ For the full typed GraphQL contract, also see the exported `schema.graphql` arti
  */
 
 export interface SignUpEmailRequest {
+  callbackURL?: string;
   email: string;
   /** @minLength 8 */
   password: string;

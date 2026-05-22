@@ -17,9 +17,7 @@ const graphqlOperations = [
   "applyAsAgent, requestAgencyAdvertising, contactMessages",
 ];
 
-export const createOpenApiDocument = (
-  options: OpenApiDocumentOptions = {},
-) => {
+export const createOpenApiDocument = (options: OpenApiDocumentOptions = {}) => {
   const serverUrl = options.serverUrl ?? config.server.url;
 
   return {
@@ -51,11 +49,13 @@ export const createOpenApiDocument = (
       },
       {
         name: "Authentication",
-        description: "Better Auth HTTP endpoints used by web and mobile clients",
+        description:
+          "Better Auth HTTP endpoints used by web and mobile clients",
       },
       {
         name: "GraphQL",
-        description: "Primary API transport for property, marketplace, services, and CMS features",
+        description:
+          "Primary API transport for property, marketplace, services, and CMS features",
       },
     ],
     components: {
@@ -74,6 +74,7 @@ export const createOpenApiDocument = (
           additionalProperties: false,
           required: ["email", "password", "name"],
           properties: {
+            callbackURL: { type: "string" },
             email: { type: "string", format: "email" },
             password: { type: "string", minLength: 8 },
             name: { type: "string", minLength: 1 },
@@ -84,8 +85,45 @@ export const createOpenApiDocument = (
           additionalProperties: false,
           required: ["email", "password"],
           properties: {
+            callbackURL: { type: "string" },
             email: { type: "string", format: "email" },
             password: { type: "string", minLength: 1 },
+            rememberMe: { type: "boolean" },
+          },
+        },
+        RequestPasswordResetRequest: {
+          type: "object",
+          additionalProperties: false,
+          required: ["email"],
+          properties: {
+            email: { type: "string", format: "email" },
+            redirectTo: { type: "string" },
+          },
+        },
+        ResetPasswordRequest: {
+          type: "object",
+          additionalProperties: false,
+          required: ["newPassword"],
+          properties: {
+            newPassword: { type: "string", minLength: 8 },
+            token: { type: "string" },
+          },
+        },
+        PasswordResetRequestResponse: {
+          type: "object",
+          additionalProperties: true,
+          required: ["status", "message"],
+          properties: {
+            status: { type: "boolean" },
+            message: { type: "string" },
+          },
+        },
+        ResetPasswordResponse: {
+          type: "object",
+          additionalProperties: true,
+          required: ["status"],
+          properties: {
+            status: { type: "boolean" },
           },
         },
         AuthSuccessResponse: {
@@ -171,7 +209,10 @@ export const createOpenApiDocument = (
           additionalProperties: true,
           properties: {
             data: {
-              anyOf: [{ type: "object", additionalProperties: true }, { type: "null" }],
+              anyOf: [
+                { type: "object", additionalProperties: true },
+                { type: "null" },
+              ],
             },
             errors: {
               type: "array",
@@ -287,6 +328,63 @@ export const createOpenApiDocument = (
               content: {
                 "application/json": {
                   schema: { $ref: "#/components/schemas/AuthSuccessResponse" },
+                },
+              },
+            },
+          },
+        },
+      },
+      "/api/auth/request-password-reset": {
+        post: {
+          tags: ["Authentication"],
+          operationId: "requestPasswordReset",
+          summary: "Request a password reset email",
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/RequestPasswordResetRequest",
+                },
+              },
+            },
+          },
+          responses: {
+            "200": {
+              description:
+                "Password reset instructions accepted. The provider returns a generic success response even when the email is unknown.",
+              content: {
+                "application/json": {
+                  schema: {
+                    $ref: "#/components/schemas/PasswordResetRequestResponse",
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      "/api/auth/reset-password": {
+        post: {
+          tags: ["Authentication"],
+          operationId: "resetPassword",
+          summary: "Reset password with a reset token",
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/ResetPasswordRequest" },
+              },
+            },
+          },
+          responses: {
+            "200": {
+              description: "Password reset completed",
+              content: {
+                "application/json": {
+                  schema: {
+                    $ref: "#/components/schemas/ResetPasswordResponse",
+                  },
                 },
               },
             },
