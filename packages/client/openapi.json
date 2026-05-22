@@ -44,6 +44,9 @@
           "name"
         ],
         "properties": {
+          "callbackURL": {
+            "type": "string"
+          },
           "email": {
             "type": "string",
             "format": "email"
@@ -66,6 +69,9 @@
           "password"
         ],
         "properties": {
+          "callbackURL": {
+            "type": "string"
+          },
           "email": {
             "type": "string",
             "format": "email"
@@ -73,6 +79,69 @@
           "password": {
             "type": "string",
             "minLength": 1
+          },
+          "rememberMe": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RequestPasswordResetRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "email"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "redirectTo": {
+            "type": "string"
+          }
+        }
+      },
+      "ResetPasswordRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "newPassword"
+        ],
+        "properties": {
+          "newPassword": {
+            "type": "string",
+            "minLength": 8
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "PasswordResetRequestResponse": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "status",
+          "message"
+        ],
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "ResetPasswordResponse": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "boolean"
           }
         }
       },
@@ -368,6 +437,68 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AuthSuccessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/request-password-reset": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "requestPasswordReset",
+        "summary": "Request a password reset email",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestPasswordResetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset instructions accepted. The provider returns a generic success response even when the email is unknown.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PasswordResetRequestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/reset-password": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "resetPassword",
+        "summary": "Reset password with a reset token",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset completed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResetPasswordResponse"
                 }
               }
             }

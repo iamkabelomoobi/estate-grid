@@ -19,10 +19,7 @@ For the full typed GraphQL contract, also see the exported `schema.graphql` arti
  * OpenAPI spec version: 1.0.0
  */
 
-export interface SignInEmailRequest {
-  callbackURL?: string;
-  email: string;
-  /** @minLength 1 */
-  password: string;
-  rememberMe?: boolean;
-}
+export interface ResetPasswordResponse {
+  status: boolean;
+  [key: string]: unknown;
+ }

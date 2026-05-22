@@ -28,6 +28,10 @@ import type {
   GetOpenApiDocument200,
   GraphQLRequest,
   GraphQLResponse,
+  PasswordResetRequestResponse,
+  RequestPasswordResetRequest,
+  ResetPasswordRequest,
+  ResetPasswordResponse,
   SignInEmailRequest,
   SignUpEmailRequest
 } from './model';
@@ -245,6 +249,92 @@ export const signOut = async ( options?: RequestInit): Promise<signOutResponse> 
 
   const data: signOutResponse['data'] = body ? JSON.parse(body) : {}
   return { data, status: res.status, headers: res.headers } as signOutResponse
+}
+
+
+
+export type requestPasswordResetResponse200 = {
+  data: PasswordResetRequestResponse
+  status: 200
+}
+
+export type requestPasswordResetResponseSuccess = (requestPasswordResetResponse200) & {
+  headers: Headers;
+};
+;
+
+export type requestPasswordResetResponse = (requestPasswordResetResponseSuccess)
+
+export const getRequestPasswordResetUrl = () => {
+
+
+
+
+  return `${getEstateGridApiBaseUrl()}/api/auth/request-password-reset`
+}
+
+/**
+ * @summary Request a password reset email
+ */
+export const requestPasswordReset = async (requestPasswordResetRequest: RequestPasswordResetRequest, options?: RequestInit): Promise<requestPasswordResetResponse> => {
+
+  const res = await fetch(getRequestPasswordResetUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(requestPasswordResetRequest)
+  }
+)
+
+
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
+
+  const data: requestPasswordResetResponse['data'] = body ? JSON.parse(body) : {}
+  return { data, status: res.status, headers: res.headers } as requestPasswordResetResponse
+}
+
+
+
+export type resetPasswordResponse200 = {
+  data: ResetPasswordResponse
+  status: 200
+}
+
+export type resetPasswordResponseSuccess = (resetPasswordResponse200) & {
+  headers: Headers;
+};
+;
+
+export type resetPasswordResponse = (resetPasswordResponseSuccess)
+
+export const getResetPasswordUrl = () => {
+
+
+
+
+  return `${getEstateGridApiBaseUrl()}/api/auth/reset-password`
+}
+
+/**
+ * @summary Reset password with a reset token
+ */
+export const resetPassword = async (resetPasswordRequest: ResetPasswordRequest, options?: RequestInit): Promise<resetPasswordResponse> => {
+
+  const res = await fetch(getResetPasswordUrl(),
+  {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(resetPasswordRequest)
+  }
+)
+
+
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
+
+  const data: resetPasswordResponse['data'] = body ? JSON.parse(body) : {}
+  return { data, status: res.status, headers: res.headers } as resetPasswordResponse
 }
 
 

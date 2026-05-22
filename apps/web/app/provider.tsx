@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query"
-import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental"
-import { type ReactNode, useState } from "react"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental";
+import { type ReactNode, useState } from "react";
+import { configureEstateGridSdk } from "@/lib/sdk";
+
+configureEstateGridSdk();
 
 export function Providers({ children }: { children: ReactNode }) {
   const [queryClient] = useState(
@@ -17,12 +17,12 @@ export function Providers({ children }: { children: ReactNode }) {
             staleTime: 30_000,
           },
         },
-      })
-  )
+      }),
+  );
 
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryStreamedHydration>{children}</ReactQueryStreamedHydration>
     </QueryClientProvider>
-  )
+  );
 }

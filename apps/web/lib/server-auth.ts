@@ -1,19 +1,10 @@
-import { headers } from "next/headers";
+import { getSession } from "@estate-grid/client";
 import { logger } from "@estate-grid/logger";
-import type { Session } from "@estate-grid/auth";
+import { headers } from "next/headers";
 
-const authBaseURL =
-  process.env.NEXT_PUBLIC_BETTER_AUTH_URL || process.env.NEXT_PUBLIC_AUTH_URL;
+import { configureEstateGridSdk, getEstateGridWebApiBaseUrl } from "@/lib/sdk";
 
-if (!authBaseURL && process.env.NODE_ENV === "production") {
-  throw new Error(
-    "Auth base URL is not configured. Set NEXT_PUBLIC_BETTER_AUTH_URL.",
-  );
-}
-
-const baseURL = authBaseURL ?? "http://localhost:4000";
-
-export type ServerSession = Session | null;
+export type ServerSession = Awaited<ReturnType<typeof getSession>>["data"];
 
 export const getServerSession = async (): Promise<ServerSession> => {
   const requestHeaders = await headers();
@@ -21,21 +12,23 @@ export const getServerSession = async (): Promise<ServerSession> => {
 
   if (!cookie) return null;
 
+  configureEstateGridSdk();
+
   try {
-    const response = await fetch(`${baseURL}/api/auth/get-session`, {
+    const response = await getSession({
       cache: "no-store",
       headers: { cookie },
     });
 
-    if (!response.ok) {
+    if (response.status < 200 || response.status >= 300) {
       logger.warn("Failed to fetch server session", {
         status: response.status,
-        url: `${baseURL}/api/auth/get-session`,
+        url: `${getEstateGridWebApiBaseUrl()}/api/auth/get-session`,
       });
       return null;
     }
 
-    return (await response.json()) as Session;
+    return response.data;
   } catch (error) {
     logger.error("Unexpected error fetching server session", { error });
     return null;
