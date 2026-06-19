@@ -23,7 +23,7 @@
     "@estate-grid/db": "*",
     "@estate-grid/logger": "^1.0.0",
     "mailgen": "^2.0.28",
-    "nodemailer": "^8.0.5",
+    "nodemailer": "^9.0.1",
     "resend": "^4.0.0"
   },
   "devDependencies": {
